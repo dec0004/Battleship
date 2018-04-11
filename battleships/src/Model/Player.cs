@@ -1,7 +1,5 @@
-// '' <summary>
-// '' Player has its own _PlayerGrid, and can see an _EnemyGrid, it can also check if
-// '' all ships are deployed and if all ships are detroyed. A Player can also attach.
-// '' </summary>
+// Player has its own _PlayerGrid, and can see an _EnemyGrid, it can also check if
+// all ships are deployed and if all ships are detroyed. A Player can also attach.
 public class Player {
     
     protected static Random _Random = new Random();
@@ -20,11 +18,8 @@ public class Player {
     
     private int _misses;
     
-    // '' <summary>
-    // '' Returns the game that the player is part of.
-    // '' </summary>
-    // '' <value>The game</value>
-    // '' <returns>The game that the player is playing</returns>
+    // Returns the game that the player is part of.
+    // Returns the game that the player is playing
     public BattleShipsGame Game {
         get {
             return _game;
@@ -33,7 +28,8 @@ public class Player {
             _game = value;
         }
     }
-    
+
+    // Sets the grid of the enemy player
     public ISeaGrid Enemy {
         set {
             _enemyGrid = value;
@@ -53,9 +49,7 @@ public class Player {
         this.RandomizeDeployment();
     }
     
-    // '' <summary>
-    // '' The EnemyGrid is a ISeaGrid because you shouldn't be allowed to see the enemies ships
-    // '' </summary>
+    // The EnemyGrid is a ISeaGrid because you shouldn't be allowed to see the enemies ships
     public ISeaGrid EnemyGrid {
         get {
             return _enemyGrid;
@@ -64,13 +58,15 @@ public class Player {
             _enemyGrid = value;
         }
     }
-    
+
+    // The PlayerGrid is just a normal SeaGrid where the players ships can be deployed and seen
     public SeaGrid PlayerGrid {
         get {
             return _playerGrid;
         }
     }
-    
+
+    // ReadyToDeploy returns true if all ships are deployed
     public bool ReadyToDeploy {
         get {
             return _playerGrid.AllDeployed;
@@ -84,6 +80,9 @@ public class Player {
         }
     }
     
+    // Returns the Player's ship with the given name.
+    // <param name="name">the name of the ship to return</param>
+    // Note: The none ship returns nothing/null
     public Ship Ship {
         get {
             if ((name == ShipName.None)) {
@@ -93,7 +92,8 @@ public class Player {
             return _Ships.Item[name];
         }
     }
-    
+
+    // Returns the number of shots the player has made
     public int Shots {
         get {
             return _shots;
@@ -106,6 +106,7 @@ public class Player {
         }
     }
     
+    // Returns the number of shots that have missed ships
     public int Missed {
         get {
             return _misses;
@@ -126,6 +127,8 @@ public class Player {
         }
     }
     
+    // Makes it possible to enumerate over the ships the player has.
+    // Returns a ship enumerator
     public IEnumerator<Ship> GetShipEnumerator() {
         Ship[,] result;
         _Ships.Values.CopyTo(result, 0);
@@ -133,12 +136,9 @@ public class Player {
         lst.AddRange(result);
         return lst.GetEnumerator();
     }
-    
-    // '' <summary>
-    // '' Makes it possible to enumerate over the ships the player
-    // '' has.
-    // '' </summary>
-    // '' <returns>A Ship enumerator</returns>
+
+    // Makes it possible to enumerate over the ships the player has.
+    // Returns a ship enumerator
     public IEnumerator GetEnumerator() {
         Ship[,] result;
         _Ships.Values.CopyTo(result, 0);
@@ -147,20 +147,16 @@ public class Player {
         return lst.GetEnumerator();
     }
     
-    // '' <summary>
-    // '' Vitual Attack allows the player to shoot
-    // '' </summary>
+    // Virtual Attack allows the player to shoot
     public virtual AttackResult Attack() {
         // human does nothing here...
         return null;
     }
     
-    // '' <summary>
-    // '' Shoot at a given row/column
-    // '' </summary>
-    // '' <param name="row">the row to attack</param>
-    // '' <param name="col">the column to attack</param>
-    // '' <returns>the result of the attack</returns>
+    // Shoot at a given row/column
+    // <param name="row">the row to attack</param>
+    // <param name="col">the column to attack</param>
+    // Returns the result of the attack
     internal AttackResult Shoot(int row, int col) {
         _shots++;
         AttackResult result;
@@ -180,7 +176,7 @@ public class Player {
     public virtual void RandomizeDeployment() {
         bool placementSuccessful;
         Direction heading;
-        // for each ship to deploy in shipist
+        // Reiterate for each ship to deploy in ship list
         foreach (ShipName shipToPlace in Enum.GetValues(typeof(ShipName))) {
             if ((shipToPlace == ShipName.None)) {
                 // TODO: Continue For... Warning!!! not translated

@@ -176,7 +176,11 @@ public class GameResources
 		SwinGame.Delay(1500);
 	}
 
-	private static void ShowMessage(string message, int number)
+    // '' <summary>
+    // '' Function used to write a given message. 
+    // '' </summary>
+    // '' <param name="message">The message it should write</param>
+    private static void ShowMessage(string message, int number)
 	{
 		const int BG_Y = 453;
 		int TX = 310;

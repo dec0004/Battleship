@@ -68,7 +68,9 @@ class MenuController
 	// '' </summary>
 	public static void HandleSetupMenuInput()
 	{
-		bool handled;
+        // Check if user clicked on the 'setup' button. If not, don't draw and
+        // handle the input of 'easy', 'medium', and 'hard' buttons
+        bool handled; 
 		handled = MenuController.HandleMenuInput(SETUP_MENU, 1, 1);
 		if (!handled)
 		{
@@ -92,7 +94,7 @@ class MenuController
 	// '' Handles input for the specified menu.
 	// '' </summary>
 	// '' <param name="menu">the identifier of the menu being processed</param>
-	// '' <param name="level">the vertical level of the menu</param>
+	// '' <param name="level">the vertical level(height) of the menu</param>
 	// '' <param name="xOffset">the xoffset of the menu</param>
 	// '' <returns>false if a clicked missed the buttons. This can be used to check prior menus.</returns>
 	private static bool HandleMenuInput(int menu, int level, int xOffset)
@@ -173,7 +175,7 @@ class MenuController
 	}
 
 	// '' <summary>
-	// '' Draws the menu at the indicated level.
+	// '' Draws the menu at the indicated level (height).
 	// '' </summary>
 	// '' <param name="menu">the menu to draw</param>
 	// '' <param name="level">the level (height) of the menu</param>
@@ -226,7 +228,7 @@ class MenuController
 	// '' Checks if the mouse is over one of the buttons in a menu.
 	// '' </summary>
 	// '' <param name="button">the index of the button to check</param>
-	// '' <param name="level">the level of the menu</param>
+	// '' <param name="level">the level (height) of the menu</param>
 	// '' <param name="xOffset">the xOffset of the menu</param>
 	// '' <returns>true if the mouse is over the button</returns>
 	private static bool IsMouseOverMenu(int button, int level, int xOffset)
