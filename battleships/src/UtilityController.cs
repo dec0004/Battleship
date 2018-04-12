@@ -1,7 +1,6 @@
-// '' <summary>
-// '' This includes a number of utility methods for
-// '' drawing and interacting with the Mouse.
-// '' </summary>
+
+//This includes a number of utility methods for drawing and interacting with the Mouse.
+
 class UtilityFunctions
 {
 
@@ -51,14 +50,12 @@ class UtilityFunctions
 
 	public const int FRAMES_PER_CELL = 8;
 
-	// '' <summary>
-	// '' Determines if the mouse is in a given rectangle.
-	// '' </summary>
-	// '' <param name="x">the x location to check</param>
-	// '' <param name="y">the y location to check</param>
-	// '' <param name="w">the width to check</param>
-	// '' <param name="h">the height to check</param>
-	// '' <returns>true if the mouse is in the area checked</returns>
+	//Determines if the mouse is in a given rectangle.
+	//parameter 'x': the x location to check
+	//parameter 'y': the y location to check
+	//parameter 'w': the width to check
+	//parameter 'h': the height to check
+	//returns true if the mouse is in the area checked
 	public static bool IsMouseInRectangle(int x, int y, int w, int h)
 	{
 		Point2D mouse;
@@ -82,22 +79,18 @@ class UtilityFunctions
 		return result;
 	}
 
-	// '' <summary>
-	// '' Draws a large field using the grid and the indicated player's ships.
-	// '' </summary>
-	// '' <param name="grid">the grid to draw</param>
-	// '' <param name="thePlayer">the players ships to show</param>
-	// '' <param name="showShips">indicates if the ships should be shown</param>
+	//Draws a large field using the grid and the indicated player's ships.
+	//parameter 'grid': the grid to draw
+	//parameter 'thePlayer': the player ships to show
+	//parameter 'showShips': indicates if the ships should be shown
 	public static void DrawField(ISeaGrid grid, Player thePlayer, bool showShips)
 	{
 		UtilityFunctions.DrawCustomField(grid, thePlayer, false, showShips, FIELD_LEFT, FIELD_TOP, FIELD_WIDTH, FIELD_HEIGHT, CELL_WIDTH, CELL_HEIGHT, CELL_GAP);
 	}
 
-	// '' <summary>
-	// '' Draws a small field, showing the attacks made and the locations of the player's ships
-	// '' </summary>
-	// '' <param name="grid">the grid to show</param>
-	// '' <param name="thePlayer">the player to show the ships of</param>
+	//Draws a small field, showing the attacks made and the locations of the player's ships
+	//parameter 'grid': the grid to show
+	//parameter 'thePlayer': the player to show the ships of
 	public static void DrawSmallField(ISeaGrid grid, Player thePlayer)
 	{
 		const int SMALL_FIELD_TOP = 373;
@@ -110,20 +103,18 @@ class UtilityFunctions
 		UtilityFunctions.DrawCustomField(grid, thePlayer, true, true, SMALL_FIELD_LEFT, SMALL_FIELD_TOP, SMALL_FIELD_WIDTH, SMALL_FIELD_HEIGHT, SMALL_FIELD_CELL_WIDTH, SMALL_FIELD_CELL_HEIGHT, SMALL_FIELD_CELL_GAP);
 	}
 
-	// '' <summary>
 	// '' Draws the player's grid and ships.
-	// '' </summary>
-	// '' <param name="grid">the grid to show</param>
-	// '' <param name="thePlayer">the player to show the ships of</param>
-	// '' <param name="small">true if the small grid is shown</param>
-	// '' <param name="showShips">true if ships are to be shown</param>
-	// '' <param name="left">the left side of the grid</param>
-	// '' <param name="top">the top of the grid</param>
-	// '' <param name="width">the width of the grid</param>
-	// '' <param name="height">the height of the grid</param>
-	// '' <param name="cellWidth">the width of each cell</param>
-	// '' <param name="cellHeight">the height of each cell</param>
-	// '' <param name="cellGap">the gap between the cells</param>
+	//parameter 'grid': the grid to show
+	//parameter 'thePlayer': the player to show the ships of
+	//parameter 'small': true if the small grid is shown
+	//parameter 'showShips': true if ships are to be shown
+	//parameter 'left': the left side of the grid
+	//parameter 'top': the top of the grid
+	//parameter 'width': the width of the grid
+	//parameter 'height': the height of the grid
+	//parameter 'cellWidth': the width of each cell
+	//parameter 'cellHeight': the height of each cell
+	//parameter 'cellGap': the gap between the cells
 	private static void DrawCustomField(ISeaGrid grid, Player thePlayer, bool small, bool showShips, int left, int top, int width, int height, int cellWidth, int cellHeight, int cellGap)
 	{
 		// SwinGame.FillRectangle(Color.Blue, left, top, width, height)
@@ -211,7 +202,7 @@ class UtilityFunctions
 			if (((s == null)
 						|| !s.IsDeployed))
 			{
-				// TODO: Continue For... Warning!!! not translated
+				// draws the ships on the grid at the determined cells
 			}
 
 			rowTop = (top
@@ -244,6 +235,9 @@ class UtilityFunctions
 							- (SHIP_GAP * 2));
 			}
 
+			//if the grid is not small...
+			//else draw the ships
+
 			if (!small)
 			{
 				SwinGame.DrawBitmap(GameImage(shipName), colLeft, rowTop);
@@ -260,11 +254,9 @@ class UtilityFunctions
 
 	private string _message;
 
-	// '' <summary>
-	// '' The message to display
-	// '' </summary>
-	// '' <value>The message to display</value>
-	// '' <returns>The message to display</returns>
+	//The message to display
+	//value is the message to display
+	//returns the message to display
 	public string Message
 	{
 		get
@@ -282,9 +274,7 @@ class UtilityFunctions
 		SwinGame.DrawText(Message, MESSAGE_COLOR, GameFont("Courier"), FIELD_LEFT, MESSAGE_TOP);
 	}
 
-	// '' <summary>
-	// '' Draws the background for the current state of the game
-	// '' </summary>
+	//Draws the background for the current state of the game
 	public static void DrawBackground()
 	{
 		switch (CurrentState)
@@ -309,9 +299,10 @@ class UtilityFunctions
 		SwinGame.DrawFramerate(675, 585);
 	}
 
+	// Add explosion and splash animations to specified row and column
 	public static void AddExplosion(int row, int col)
 	{
-		UtilityFunctions.AddAnimation(row, col, "Splash");
+		UtilityFunctions.AddAnimation(row, col, "Splash"); //does this name need to be changed?
 	}
 
 	public static void AddSplash(int row, int col)
@@ -321,6 +312,7 @@ class UtilityFunctions
 
 	private List<Sprite> _Animations = new List<Sprite>();
 
+	
 	private static void AddAnimation(int row, int col, string image)
 	{
 		Sprite s;
@@ -340,6 +332,7 @@ class UtilityFunctions
 		_Animations.Add(s);
 	}
 
+	//update animations - if animation has ended, remove the animation
 	public static void UpdateAnimations()
 	{
 		List<Sprite> ended = new List<Sprite>();
@@ -361,6 +354,7 @@ class UtilityFunctions
 
 	}
 
+	//draw the animations
 	public static void DrawAnimations()
 	{
 		foreach (Sprite s in _Animations)
@@ -370,6 +364,7 @@ class UtilityFunctions
 
 	}
 
+	//update animations
 	public static void DrawAnimationSequence()
 	{
 		int i;

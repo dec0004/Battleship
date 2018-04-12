@@ -1,23 +1,21 @@
-// '' <summary>
-// '' The GameStates represent the state of the Battleships game play.
-// '' This is used to control the actions and view displayed to
-// '' the player.
-// '' </summary>
+
+//The GameStates represent the state of the Battleships game play.
+//This is used to control the actions and view displayed to the player.
 public enum GameState
 {
-	ViewingMainMenu, // '' The player is viewing the main menu.
+	ViewingMainMenu, //The player is viewing the main menu.
 
-    ViewingGameMenu, // '' The player is viewing the game menu
+    ViewingGameMenu, //The player is viewing the game menu
 
-    ViewingHighScores, // '' The player is looking at the high scores
+    ViewingHighScores, //The player is looking at the high scores
 
-    AlteringSettings, // '' The player is altering the game settings
+    AlteringSettings, //The player is altering the game settings
 
-    Deploying, // '' Players are deploying their ships
+    Deploying, //Players are deploying their ships
 
-    Discovering, // '' Players are attempting to locate each others ships
+    Discovering, //Players are attempting to locate each others ships
 
-    EndingGame, // '' One player has won, showing the victory screen
+    EndingGame, //One player has won, showing the victory screen
 
-    Quitting, // '' The player has quit. Show ending credits and terminate the game
+    Quitting, //The player has quit. Show ending credits and terminate the game
 }

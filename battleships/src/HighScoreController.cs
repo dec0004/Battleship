@@ -1,11 +1,7 @@
 using System.IO;
 using SwinGameSDK;
-// '' <summary>
-// '' Controls displaying and collecting high score data.
-// '' </summary>
-// '' <remarks>
-// '' Data is saved to a file.
-// '' </remarks>
+//Controls displaying and collecting high score data.
+//Data is saved to a file.
 class HighScoreController
 {
 
@@ -13,10 +9,7 @@ class HighScoreController
 
 	private const int SCORES_LEFT = 490;
 
-	// '' <summary>
-	// '' The score structure is used to keep the name and
-	// '' score of the top players together.
-	// '' </summary>
+	//The score structure is used to keep the name and score of the top players together.
 	private struct Score
 	{
 
@@ -24,11 +17,9 @@ class HighScoreController
 
 		public int Value;
 
-		// '' <summary>
-		// '' Allows scores to be compared to facilitate sorting
-		// '' </summary>
-		// '' <param name="obj">the object to compare to</param>
-		// '' <returns>a value that indicates the sort order</returns>
+		//Allows scores to be compared to facilitate sorting
+		//parameter 'obj': the object to compare to
+		//returns a value that indicates the sort order
 		public static int CompareTo(object obj)
 		{
 			if ((obj.GetType() == Score))
@@ -70,16 +61,8 @@ class HighScoreController
 		input.Close();
 	}
 
-	// '' <summary>
-	// '' Saves the scores back to the highscores text file.
-	// '' </summary>
-	// '' <remarks>
-	// '' The format is
-	// '' # of scores
-	// '' NNNSSS
-	// '' 
-	// '' Where NNN is the name and SSS is the score
-	// '' </remarks>
+	//Saves the scores back to the highscores text file.
+	//The format is # of scores NNNSSS, where NNN is the name and SSS is the score
 	private static void SaveScores()
 	{
 		string filename;
@@ -95,9 +78,7 @@ class HighScoreController
 		output.Close();
 	}
 
-	// '' <summary>
-	// '' Draws the high scores to the screen.
-	// '' </summary>
+	//Draws the high scores to the screen.
 	public static void DrawHighScores()
 	{
 		const int SCORES_HEADING = 40;
@@ -135,10 +116,7 @@ class HighScoreController
 
 	}
 
-	// '' <summary>
-	// '' Handles the user input during the top score screen.
-	// '' </summary>
-	// '' <remarks></remarks>
+	//Handles the user input during the top score screen.
 	public static void HandleHighScoreInput()
 	{
 		if ((SwinGame.MouseClicked(MouseButton.LeftButton)
@@ -149,13 +127,10 @@ class HighScoreController
 
 	}
 
-	// '' <summary>
-	// '' Read the user's name for their highsSwinGame.
-	// '' </summary>
-	// '' <param name="value">the player's sSwinGame.</param>
-	// '' <remarks>
-	// '' This verifies if the score is a highsSwinGame.
-	// '' </remarks>
+	//Read the user's name for their highsSwinGame.
+	//parameter 'value': the player's score
+	//This verifies is the score is a high score
+
 	public static void ReadHighScore(int value)
 	{
 		const int ENTRY_TOP = 500;
