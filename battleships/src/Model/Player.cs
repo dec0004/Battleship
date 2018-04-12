@@ -179,13 +179,14 @@ public class Player {
         // Reiterate for each ship to deploy in ship list
         foreach (ShipName shipToPlace in Enum.GetValues(typeof(ShipName))) {
             if ((shipToPlace == ShipName.None)) {
+
+			 continue;
                 // TODO: Continue For... Warning!!! not translated
             }
             
             placementSuccessful = false;
-            for (
-            ; !placementSuccessful; 
-            ) {
+            if (!placementSuccessful)
+			{
                 int dir = _Random.Next(2);
                 int x = _Random.Next(0, 11);
                 int y = _Random.Next(0, 11);
