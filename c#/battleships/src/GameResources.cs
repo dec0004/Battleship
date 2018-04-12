@@ -54,41 +54,37 @@ public class GameResources
 		GameResources.NewMusic("Background", "horrordrone.mp3");
 	}
 
-	// '' <summary>
-	// '' Gets a Font Loaded in the Resources
-	// '' </summary>
-	// '' <param name="font">Name of Font</param>
-	// '' <returns>The Font Loaded with this Name</returns>
+
+	//Gets a Font Loaded in the Resources
+	//parameter 'font': name of font
+	//returns the font loaded with this name
 	public static Font GameFont(string font)
 	{
 		return _Fonts(font);
 	}
 
-	// '' <summary>
-	// '' Gets an Image loaded in the Resources
-	// '' </summary>
-	// '' <param name="image">Name of image</param>
-	// '' <returns>The image loaded with this name</returns>
+
+	//Gets an Image loaded in the Resources
+	//parameter 'image': name of Image
+	//returns the image loaded with this name
 	public static Bitmap GameImage(string image)
 	{
 		return _Images(image);
 	}
 
-	// '' <summary>
-	// '' Gets an sound loaded in the Resources
-	// '' </summary>
-	// '' <param name="sound">Name of sound</param>
-	// '' <returns>The sound with this name</returns>
+
+	//Gets an sound loaded in the Resources
+	//parameter 'sound': name of sound
+	//returns the sound loaded with this name
 	public static SoundEffect GameSound(string sound)
 	{
 		return _Sounds(sound);
 	}
 
-	// '' <summary>
-	// '' Gets the music loaded in the Resources
-	// '' </summary>
-	// '' <param name="music">Name of music</param>
-	// '' <returns>The music with this name</returns>
+
+	//Gets the music loaded in the Resources
+	//parameter 'music': name of music
+	//retuns the music loaded with this name
 	public static Music GameMusic(string music)
 	{
 		return _Music(music);
@@ -114,10 +110,9 @@ public class GameResources
 
 	private SoundEffect _StartSound;
 
-	// '' <summary>
-	// '' The Resources Class stores all of the Games Media Resources, such as Images, Fonts
-	// '' Sounds, Music.
-	// '' </summary>
+
+	/*The Resources Class stores all of the Games Media Resources, 
+	such as Images, Fonts Sounds, Music.*/
 	public static void LoadResources()
 	{
 		int width;
@@ -176,7 +171,9 @@ public class GameResources
 		SwinGame.Delay(1500);
 	}
 
-	private static void ShowMessage(string message, int number)
+    //Function used to write a given message. 
+    //parameter 'message': the message is should write
+    private static void ShowMessage(string message, int number)
 	{
 		const int BG_Y = 453;
 		int TX = 310;

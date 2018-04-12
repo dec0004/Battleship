@@ -1,9 +1,7 @@
 using SwinGameSDK;
-// '' <summary>
-// '' The menu controller handles the drawing and user interactions
-// '' from the menus in the game. These include the main menu, game
-// '' menu and the settings m,enu.
-// '' </summary>
+/*The menu controller handles the drawing and user interactions
+from the menus in the game. These include the main menu, game
+menu and the settings menu.*/
 class MenuController
 {
 
@@ -55,20 +53,18 @@ class MenuController
 
 	private Color HIGHLIGHT_COLOR = SwinGame.RGBAColor(1, 57, 86, 255);
 
-	// '' <summary>
-	// '' Handles the processing of user input when the main menu is showing
-	// '' </summary>
+	//Handles the processing of user input when the main menu is showing
 	public static void HandleMainMenuInput()
 	{
 		MenuController.HandleMenuInput(MAIN_MENU, 0, 0);
 	}
 
-	// '' <summary>
-	// '' Handles the processing of user input when the main menu is showing
-	// '' </summary>
+	//Handles the processing of user input when the main menu is showing
 	public static void HandleSetupMenuInput()
 	{
-		bool handled;
+        /*Check if user clicked on the 'setup' button. If not, don't draw and
+        handle the input of 'easy', 'medium', and 'hard' buttons*/
+        bool handled; 
 		handled = MenuController.HandleMenuInput(SETUP_MENU, 1, 1);
 		if (!handled)
 		{
@@ -77,24 +73,18 @@ class MenuController
 
 	}
 
-	// '' <summary>
-	// '' Handle input in the game menu.
-	// '' </summary>
-	// '' <remarks>
-	// '' Player can return to the game, surrender, or quit entirely
-	// '' </remarks>
+	//Handle input in the game menu.
+	//Player can return to the game, surrender, or quit entirely
 	public static void HandleGameMenuInput()
 	{
 		MenuController.HandleMenuInput(GAME_MENU, 0, 0);
 	}
 
-	// '' <summary>
-	// '' Handles input for the specified menu.
-	// '' </summary>
-	// '' <param name="menu">the identifier of the menu being processed</param>
-	// '' <param name="level">the vertical level of the menu</param>
-	// '' <param name="xOffset">the xoffset of the menu</param>
-	// '' <returns>false if a clicked missed the buttons. This can be used to check prior menus.</returns>
+	//Handles input for the specified menu.
+	//parameter 'menu': the identifier of the menu being processed
+	//parameter 'level': the vertical level(height) of the menu
+	//parameter 'xOffset': the xoffset of the menu
+	//returns false if a click missed the buttons. This can be used to check prior menus
 	private static bool HandleMenuInput(int menu, int level, int xOffset)
 	{
 		if (SwinGame.KeyTyped(KeyCode.VK_ESCAPE))
@@ -129,9 +119,7 @@ class MenuController
 		return false;
 	}
 
-	// '' <summary>
-	// '' Draws the main menu to the screen.
-	// '' </summary>
+	//Draws the main menu to the screen.
 	public static void DrawMainMenu()
 	{
         // Clears the Screen to Black
@@ -139,9 +127,7 @@ class MenuController
 		MenuController.DrawButtons(MAIN_MENU);
 	}
 
-	// '' <summary>
-	// '' Draws the Game menu to the screen
-	// '' </summary>
+	//Draws the Game menu to the screen
 	public static void DrawGameMenu()
 	{
         // Clears the Screen to Black
@@ -149,12 +135,8 @@ class MenuController
 		MenuController.DrawButtons(GAME_MENU);
 	}
 
-	// '' <summary>
-	// '' Draws the settings menu to the screen.
-	// '' </summary>
-	// '' <remarks>
-	// '' Also shows the main menu
-	// '' </remarks>
+	// Draws the settings menu to the screen.
+	//Also shows the main menu
 	public static void DrawSettings()
 	{
         // Clears the Screen to Black
@@ -163,26 +145,21 @@ class MenuController
 		MenuController.DrawButtons(SETUP_MENU, 1, 1);
 	}
 
-	// '' <summary>
-	// '' Draw the buttons associated with a top level menu.
-	// '' </summary>
-	// '' <param name="menu">the index of the menu to draw</param>
+	//Draw the buttons associated with a top level menu.
+	//parameter 'menu': the index of the menu to draw.
 	private static void DrawButtons(int menu)
 	{
 		MenuController.DrawButtons(menu, 0, 0);
 	}
 
-	// '' <summary>
-	// '' Draws the menu at the indicated level.
-	// '' </summary>
-	// '' <param name="menu">the menu to draw</param>
-	// '' <param name="level">the level (height) of the menu</param>
-	// '' <param name="xOffset">the offset of the menu</param>
-	// '' <remarks>
-	// '' The menu text comes from the _menuStructure field. The level indicates the height
-	// '' of the menu, to enable sub menus. The xOffset repositions the menu horizontally
-	// '' to allow the submenus to be positioned correctly.
-	// '' </remarks>
+	//Draws the menu at the indicated level (height).
+	//parameter 'menu': the menu to draw
+	//parameter 'level': the level (height) of the menu
+	//parameter 'xOffset': the offset of the menu
+	/*The menu text comes from the _menuStructure field. The level indicates the height
+	of the menu, to enable sub menus. The xOffset repositions the menu horizontally
+	to allow the submenus to be positioned correctly.*/
+
 	private static void DrawButtons(int menu, int level, int xOffset)
 	{
 		int btnTop;
@@ -212,23 +189,19 @@ class MenuController
 
 	}
 
-	// '' <summary>
-	// '' Determined if the mouse is over one of the button in the main menu.
-	// '' </summary>
-	// '' <param name="button">the index of the button to check</param>
-	// '' <returns>true if the mouse is over that button</returns>
+	//Determines if the mouse is over one of the buttons in the main menu.
+	//parameter 'button': the index of the button to check
+	//returns true of the mouse is over that button
 	private static bool IsMouseOverButton(int button)
 	{
 		return MenuController.IsMouseOverMenu(button, 0, 0);
 	}
 
-	// '' <summary>
-	// '' Checks if the mouse is over one of the buttons in a menu.
-	// '' </summary>
-	// '' <param name="button">the index of the button to check</param>
-	// '' <param name="level">the level of the menu</param>
-	// '' <param name="xOffset">the xOffset of the menu</param>
-	// '' <returns>true if the mouse is over the button</returns>
+	//Checks if the mouse is over one of the buttons in a menu.
+	//parameter 'button': the index of the button to check
+	//parameter 'level': the level (height) of the menu
+	//parameter 'xOffset': the xOffset of the menu
+	//returns true if the mouse is over the button
 	private static bool IsMouseOverMenu(int button, int level, int xOffset)
 	{
 		int btnTop = (MENU_TOP
@@ -240,11 +213,9 @@ class MenuController
 		return IsMouseInRectangle(btnLeft, btnTop, BUTTON_WIDTH, BUTTON_HEIGHT);
 	}
 
-	// '' <summary>
-	// '' A button has been clicked, perform the associated action.
-	// '' </summary>
-	// '' <param name="menu">the menu that has been clicked</param>
-	// '' <param name="button">the index of the button that was clicked</param>
+	//A button has been clicked, perform the associated action.
+	//parameter 'menu': the menu that has been clicked
+	//parameter 'button': the index of the button that was clicked
 	private static void PerformMenuAction(int menu, int button)
 	{
 		switch (menu)
@@ -261,10 +232,8 @@ class MenuController
 		}
 	}
 
-	// '' <summary>
-	// '' The main menu was clicked, perform the button's action.
-	// '' </summary>
-	// '' <param name="button">the button pressed</param>
+	//The main menu was clicked, perform the button's action.
+	//parameter  'button': the button pressed
 	private static void PerformMainMenuAction(int button)
 	{
 		switch (button)
@@ -284,10 +253,8 @@ class MenuController
 		}
 	}
 
-	// '' <summary>
-	// '' The setup menu was clicked, perform the button's action.
-	// '' </summary>
-	// '' <param name="button">the button pressed</param>
+	//The setup menu was clicked, perform the button's action.
+	//parameter 'button': the button pressed
 	private static void PerformSetupMenuAction(int button)
 	{
 		switch (button)
@@ -306,10 +273,8 @@ class MenuController
 		EndCurrentState();
 	}
 
-	// '' <summary>
-	// '' The game menu was clicked, perform the button's action.
-	// '' </summary>
-	// '' <param name="button">the button pressed</param>
+	//The game menu was clicked, perform the button's action.
+	//parameter 'button': the button pressed
 	private static void PerformGameMenuAction(int button)
 	{
 		switch (button)
