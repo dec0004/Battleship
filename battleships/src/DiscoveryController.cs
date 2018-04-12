@@ -21,7 +21,7 @@ class DiscoveryController
 	}
 
 
-	//Attack the location that the mouse if over.
+	//Attack the location that the mouse is over.
 	private static void DoAttack()
 	{
 		Point2D mouse;

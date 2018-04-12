@@ -73,12 +73,12 @@ public class AIMediumPlayer {
         column = _Random.Next(0, EnemyGrid.Width);
     }
     
-    // ProcessShot will be called uppon when a ship is found.
+    // ProcessShot will be called upon when a ship is found.
     // It will create a stack with targets it will try to hit. These targets
     // will be around the tile that has been hit.
     // <param name="row">the row it needs to process</param>
     // <param name="col">the column it needs to process</param>
-    // <param name="result">the result og the last shot (should be hit)</param>
+    // <param name="result">the result of the last shot (should be hit)</param>
     protected override void ProcessShot(int row, int col, AttackResult result) {
         if ((result.Value == ResultOfAttack.Hit)) {
             _CurrentState = AIStates.TargetingShip;

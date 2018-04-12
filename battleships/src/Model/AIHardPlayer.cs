@@ -28,6 +28,9 @@ public class AIHardPlayer {
             }
         }
         
+		//Target constructor
+		//parameter 'shootat': the location to shoot at
+		//parameter 'source': the source of the location
         internal Target(Location shootat, Location source) {
             _ShotAt = shootat;
             _Source = source;
@@ -48,9 +51,9 @@ public class AIHardPlayer {
         }
     }
     
-    // Private enumarator for AI states. currently there are two states,
+    // Private enumarator for AI states. currently there are three states,
     // the AI can be searching for a ship, or if it has found a ship it will
-    // target the same ship
+    // target the same ship, or it is locked onto a ship
     private enum AIStates {
 
         Searching, // The AI is searching for its next target
@@ -195,11 +198,12 @@ public class AIHardPlayer {
         
     }
     
-    // RemoveShotsAround will remove targets that belong to the destroyed ship by checking if 
-    // the source of the targets belong to the destroyed ship. If they don't put them on a new stack.
-    // Then clear the targets stack and move all the targets that still need to be shot at back 
-    // onto the targets stack
-    // <param name="toRemove"></param>
+
+	//RemoveShotsAround removes targets that belonged to the destroyed ship. It does this by checking if the
+	//source of the targets belonged to that destroyed ship. If they didn't, they are put onto a new stack.
+	//The targets stack is then cleared, and all the targets that still need to be shot at, are placed
+	//back onto the targets stack.
+	// <param name="toRemove">where to remove</param>
     private void RemoveShotsAround(Location toRemove) {
         Stack<Target> newStack = new Stack<Target>(); // create a new stack
 
@@ -221,14 +225,15 @@ public class AIHardPlayer {
                 if ((_Targets.Count == 0)) {
                     _CurrentState = AIStates.Searching;
                 }
-                
-                // ProcessHit gets the last hit location coordinates and will ask AddTarget to
-                // create targets around that location by calling the method four times each time with
-                // a new location around the last hit location.
-                // It will then set the state of the AI and if it's not Searching or targetingShip then 
-                // start ReOrderTargets.
-                // <param name="row"></param>
-                // <param name="col"></param>
+               
+
+				//ProcessHit gets the last hit location coordinates. It will then ask AddTarget to create targets around that
+				//location. It calls the AddTarget method four times, with each time having a new location around the last hit coordinates.
+				//The AI state is then set
+				//If the AI is not Searching, or TargetingShip, then start ReOrderTargets.
+				 // <param name="row"> row to AddTarget</param>
+                // <param name="col">column to AddTarget</param>
+
                 ProcessHit(((int)(row)), ((int)(col)));
                 _LastHit.Add(_CurrentTarget);
                 // Uses _CurrentTarget as the source
@@ -259,12 +264,12 @@ public class AIHardPlayer {
                 MoveToTopOfStack(-1, _CurrentTarget.ShotAt.Column);
             }
             
-            // MoveToTopOfStack will re-order the stack by checkin the coordinates of each target
-            // If they have the right column or row values it will be moved to the _Match stack else 
+            // MoveToTopOfStack will re-order the stack by checking the coordinates of each target
+            // If they have the right column or row values, it will be moved to the _Match stack else 
             // put it on the _NoMatch stack. Then move all the targets from the _NoMatch stack back on the 
             // _Targets stack, these will be at the bottom making them less important. The move all the
-            // targets from the _Match stack on the _Targets stack, these will be on the top and will there
-            // for be shot at first
+            // targets from the _Match stack on the _Targets stack, these will be on the top and will therefore
+            // be shot at first
             // <param name="row">the row of the optimisation</param>
             // <param name="column">the column of the optimisation</param>
             MoveToTopOfStack(((int)(row)), ((int)(column)));

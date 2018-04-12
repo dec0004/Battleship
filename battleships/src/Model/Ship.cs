@@ -1,6 +1,6 @@
 // A Ship has all the details about itself. For example the shipname,
-// size, number of hits taken and the location. Its able to add tiles,
-// remove, hits taken and if its deployed and destroyed.
+// size, number of hits taken and the location. It's able to add tiles,
+// remove tiles, hits taken and if it's deployed and destroyed.
 
 // Deployment information is supplied to allow ships to be drawn.
 

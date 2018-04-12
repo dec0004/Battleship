@@ -82,7 +82,7 @@ public class GameController
 		}
 
 
-		//Stops listening to the old game once a new game is started
+		//Stops listening to the old game once a new game has started
 	}
 
 	static void EndGame()
@@ -97,8 +97,8 @@ public class GameController
 
 	//Listens to the game grids for any changes and redraws the screen when the grids change
 
-	//parameter 'sender': the grid that changed</param>
-	//parameter 'args': not used</param>
+	//parameter 'sender': the grid that changed
+	//parameter 'args': not used
 	private static void GridChanged(object sender, EventArgs args)
 	{
 		GameController.DrawScreen();
