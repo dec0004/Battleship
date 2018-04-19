@@ -1,73 +1,73 @@
 using SwinGameSDK;
-//The battle phase is handled by the DiscoveryController.
-class DiscoveryController
+
+/// <summary>
+/// The battle phase is handled by the DiscoveryController.
+/// </summary>
+static class DiscoveryController
 {
 
-
-	//Handles input during the discovery phase of the game.
-	//Escape opens the game menu. Clicking the mouse will attack a location.
+	/// <summary>
+	/// Handles input during the discovery phase of the game.
+	/// </summary>
+	/// <remarks>
+	/// Escape opens the game menu. Clicking the mouse will
+	/// attack a location.
+	/// </remarks>
 	public static void HandleDiscoveryInput()
 	{
-		if (SwinGame.KeyTyped(KeyCode.VK_ESCAPE))
-		{
+		if (SwinGame.KeyTyped(KeyCode.VK_ESCAPE)) {
 			AddNewState(GameState.ViewingGameMenu);
 		}
 
-		if (SwinGame.MouseClicked(MouseButton.LeftButton))
-		{
-			DiscoveryController.DoAttack();
+		if (SwinGame.MouseClicked(MouseButton.LeftButton)) {
+			DoAttack();
 		}
-
 	}
 
-
-	//Attack the location that the mouse is over.
+	/// <summary>
+	/// Attack the location that the mouse if over.
+	/// </summary>
 	private static void DoAttack()
 	{
-		Point2D mouse;
+		Point2D mouse = default(Point2D);
+
 		mouse = SwinGame.MousePosition();
-		// Calculate the row/col clicked
-		int row;
-		int col;
-		row = Convert.ToInt32(Math.Floor(((mouse.Y - FIELD_TOP)
-							/ (CELL_HEIGHT + CELL_GAP))));
-		col = Convert.ToInt32(Math.Floor(((mouse.X - FIELD_LEFT)
-							/ (CELL_WIDTH + CELL_GAP))));
-		if (((row >= 0)
-					&& (row < HumanPlayer.EnemyGrid.Height)))
-		{
-			if (((col >= 0)
-						&& (col < HumanPlayer.EnemyGrid.Width)))
-			{
+
+		//Calculate the row/col clicked
+		int row = 0;
+		int col = 0;
+		row = Convert.ToInt32(Math.Floor((mouse.Y - FIELD_TOP) / (CELL_HEIGHT + CELL_GAP)));
+		col = Convert.ToInt32(Math.Floor((mouse.X - FIELD_LEFT) / (CELL_WIDTH + CELL_GAP)));
+
+		if (row >= 0 & row < HumanPlayer.EnemyGrid.Height) {
+			if (col >= 0 & col < HumanPlayer.EnemyGrid.Width) {
 				Attack(row, col);
 			}
-
 		}
-
 	}
 
-
-	//Draws the game during the attack phase.
+	/// <summary>
+	/// Draws the game during the attack phase.
+	/// </summary>s
 	public static void DrawDiscovery()
 	{
 		const int SCORES_LEFT = 172;
 		const int SHOTS_TOP = 157;
 		const int HITS_TOP = 206;
 		const int SPLASH_TOP = 256;
-		if (((SwinGame.KeyDown(KeyCode.VK_LSHIFT) || SwinGame.KeyDown(KeyCode.VK_RSHIFT))
-					&& SwinGame.KeyDown(KeyCode.VK_C)))
-		{
+
+		if ((SwinGame.KeyDown(KeyCode.VK_LSHIFT) | SwinGame.KeyDown(KeyCode.VK_RSHIFT)) & SwinGame.KeyDown(KeyCode.VK_C)) {
 			DrawField(HumanPlayer.EnemyGrid, ComputerPlayer, true);
-		}
-		else
-		{
+		} else {
 			DrawField(HumanPlayer.EnemyGrid, ComputerPlayer, false);
 		}
 
 		DrawSmallField(HumanPlayer.PlayerGrid, HumanPlayer);
 		DrawMessage();
+
 		SwinGame.DrawText(HumanPlayer.Shots.ToString(), Color.White, GameFont("Menu"), SCORES_LEFT, SHOTS_TOP);
 		SwinGame.DrawText(HumanPlayer.Hits.ToString(), Color.White, GameFont("Menu"), SCORES_LEFT, HITS_TOP);
 		SwinGame.DrawText(HumanPlayer.Missed.ToString(), Color.White, GameFont("Menu"), SCORES_LEFT, SPLASH_TOP);
 	}
+
 }
