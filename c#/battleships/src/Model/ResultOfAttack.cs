@@ -1,14 +1,36 @@
+using Microsoft.VisualBasic;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Data;
+using System.Diagnostics;
+/// <summary>
+/// The result of an attack.
+/// </summary>
+public enum ResultOfAttack
+{
+	/// <summary>
+	/// The player hit something
+	/// </summary>
+	Hit,
 
-//The result of an attack.
+	/// <summary>
+	/// The player missed
+	/// </summary>
+	Miss,
 
-public enum ResultOfAttack {
-    Hit, //The player hit something
+	/// <summary>
+	/// The player destroyed a ship
+	/// </summary>
+	Destroyed,
 
-    Miss, //The player missed
+	/// <summary>
+	/// That location was already shot.
+	/// </summary>
+	ShotAlready,
 
-    Destroyed, //The player destroyed a ship
-
-    ShotAlready, //That location was already shot.
-
-    GameOver, //The player killed all of the opponents ships
+	/// <summary>
+	/// The player killed all of the opponents ships
+	/// </summary>
+	GameOver
 }

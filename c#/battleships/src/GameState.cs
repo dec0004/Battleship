@@ -1,21 +1,54 @@
+using Microsoft.VisualBasic;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Data;
+using System.Diagnostics;
+/// <summary>
+/// The GameStates represent the state of the Battleships game play.
+/// This is used to control the actions and view displayed to
+/// the player.
+/// </summary>
 
-//The GameStates represent the state of the Battleships game play.
-//This is used to control the actions and view displayed to the player.
 public enum GameState
 {
-	ViewingMainMenu, //The player is viewing the main menu.
+	/// <summary>
+	/// The player is viewing the main menu.
+	/// </summary>
+	ViewingMainMenu,
 
-    ViewingGameMenu, //The player is viewing the game menu
+	/// <summary>
+	/// The player is viewing the game menu
+	/// </summary>
+	ViewingGameMenu,
 
-    ViewingHighScores, //The player is looking at the high scores
+	/// <summary>
+	/// The player is looking at the high scores
+	/// </summary>
+	ViewingHighScores,
 
-    AlteringSettings, //The player is altering the game settings
+	/// <summary>
+	/// The player is altering the game settings
+	/// </summary>
+	AlteringSettings,
 
-    Deploying, //Players are deploying their ships
+	/// <summary>
+	/// Players are deploying their ships
+	/// </summary>
+	Deploying,
 
-    Discovering, //Players are attempting to locate each others ships
+	/// <summary>
+	/// Players are attempting to locate each others ships
+	/// </summary>
+	Discovering,
 
-    EndingGame, //One player has won, showing the victory screen
+	/// <summary>
+	/// One player has won, showing the victory screen
+	/// </summary>
+	EndingGame,
 
-    Quitting, //The player has quit. Show ending credits and terminate the game
+	/// <summary>
+	/// The player has quit. Show ending credits and terminate the game
+	/// </summary>
+	Quitting
 }

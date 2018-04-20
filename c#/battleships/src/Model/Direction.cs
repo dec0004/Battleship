@@ -1,7 +1,21 @@
-// '' The direction the ship can be oriented.
-public enum Direction {
-    
-    LeftRight, // The ship is oriented left/right
+using Microsoft.VisualBasic;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Data;
+using System.Diagnostics;
+/// <summary>
+/// The direction the ship can be oriented.
+/// </summary>
+public enum Direction
+{
+	/// <summary>
+	/// The ship is oriented left/right
+	/// </summary>
+	LeftRight,
 
-    UpDown, // The ship is oriented up/down
+	/// <summary>
+	/// The ship is oriented up/down
+	/// </summary>
+	UpDown
 }

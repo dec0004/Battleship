@@ -1,9 +1,26 @@
-//  The different AI levels.
-public enum AIOption {
-    Easy, // Easy, total random shooting
+using Microsoft.VisualBasic;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Data;
+using System.Diagnostics;
+/// <summary>
+/// The different AI levels.
+/// </summary>
+public enum AIOption
+{
+	/// <summary>
+	/// Easy, total random shooting
+	/// </summary>
+	Easy,
 
-    Medium, // Medium, marks squares around hits
+	/// <summary>
+	/// Medium, marks squares around hits
+	/// </summary>
+	Medium,
 
-    Hard, // As medium, but removes shots once it misses. Also once it hits successfully, will continue to try and find rest of ship
-	//does not shoot randomly
+	/// <summary>
+	/// As medium, but removes shots once it misses
+	/// </summary>
+	Hard
 }
