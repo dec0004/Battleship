@@ -1,7 +1,0 @@
-Microsoft (R) Visual Basic Compiler version 14.7.2556
-for Visual Basic 2012
-Copyright (c) Microsoft Corporation.  All rights reserved.
-
-This compiler is provided as part of the Microsoft (R) .NET Framework, but only supports language versions up to Visual Basic 2012, which is no longer the latest version. For compilers that support newer versions of the Visual Basic programming language, see http://go.microsoft.com/fwlink/?LinkID=533241
-
-vbc : Command line error BC2008 : no input sources specified

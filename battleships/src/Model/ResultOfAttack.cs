@@ -1,14 +1,38 @@
+﻿using System;
 
-//The result of an attack.
+//========================================================================
+// This conversion was produced by the Free Edition of
+// Instant C# courtesy of Tangible Software Solutions.
+// Order the Premium Edition at https://www.tangiblesoftwaresolutions.com
+//========================================================================
 
-public enum ResultOfAttack {
-    Hit, //The player hit something
+/// <summary>
+/// The result of an attack.
+/// </summary>
+public enum ResultOfAttack
+{
+	/// <summary>
+	/// The player hit something
+	/// </summary>
+	Hit,
 
-    Miss, //The player missed
+	/// <summary>
+	/// The player missed
+	/// </summary>
+	Miss,
 
-    Destroyed, //The player destroyed a ship
+	/// <summary>
+	/// The player destroyed a ship
+	/// </summary>
+	Destroyed,
 
-    ShotAlready, //That location was already shot.
+	/// <summary>
+	/// That location was already shot.
+	/// </summary>
+	ShotAlready,
 
-    GameOver, //The player killed all of the opponents ships
+	/// <summary>
+	/// The player killed all of the opponents ships
+	/// </summary>
+	GameOver
 }

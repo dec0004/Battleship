@@ -1,9 +1,28 @@
-//  The different AI levels.
-public enum AIOption {
-    Easy, // Easy, total random shooting
+﻿using System;
 
-    Medium, // Medium, marks squares around hits
+//========================================================================
+// This conversion was produced by the Free Edition of
+// Instant C# courtesy of Tangible Software Solutions.
+// Order the Premium Edition at https://www.tangiblesoftwaresolutions.com
+//========================================================================
 
-    Hard, // As medium, but removes shots once it misses. Also once it hits successfully, will continue to try and find rest of ship
-	//does not shoot randomly
+/// <summary>
+/// The different AI levels.
+/// </summary>
+public enum AIOption
+{
+	/// <summary>
+	/// Easy, total random shooting
+	/// </summary>
+	Easy,
+
+	/// <summary>
+	/// Medium, marks squares around hits
+	/// </summary>
+	Medium,
+
+	/// <summary>
+	/// As medium, but removes shots once it misses
+	/// </summary>
+	Hard
 }

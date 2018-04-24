@@ -1,77 +1,63 @@
+﻿using System;
+
+//========================================================================
+// This conversion was produced by the Free Edition of
+// Instant C# courtesy of Tangible Software Solutions.
+// Order the Premium Edition at https://www.tangiblesoftwaresolutions.com
+//========================================================================
+
 using SwinGameSDK;
 
-//The battle phase is handled by the DiscoveryController.
-class DiscoveryController
+/// <summary>
+/// The EndingGameController is responsible for managing the interactions at the end
+/// of a game.
+/// </summary>
+
+internal static class EndingGameController
 {
 
-
-	//Handles input during the discovery phase of the game.
-
-	//Escape opens the game menu. Clicking the mouse will attack a location.
-
-	public static void HandleDiscoveryInput()
+	/// <summary>
+	/// Draw the end of the game screen, shows the win/lose state
+	/// </summary>
+	public static void DrawEndOfGame()
 	{
-		if (SwinGame.KeyTyped(KeyCode.VK_ESCAPE))
+
+       Rectangle toDraw = new Rectangle();
+		string whatShouldIPrint = null;
+
+		UtilityFunctions.DrawField(GameController.ComputerPlayer.PlayerGrid, GameController.ComputerPlayer, true);
+		UtilityFunctions.DrawSmallField(GameController.HumanPlayer.PlayerGrid, GameController.HumanPlayer);
+
+		 toDraw.X = 0;
+		toDraw.Y = 250;
+		toDraw.Width = SwinGame.ScreenWidth();
+		toDraw.Height = SwinGame.ScreenHeight();
+
+		if (GameController.HumanPlayer.IsDestroyed)
 		{
-			AddNewState(GameState.ViewingGameMenu);
-		}
-
-		if (SwinGame.MouseClicked(MouseButton.LeftButton))
-		{
-			DiscoveryController.DoAttack();
-		}
-
-	}
-
-
-	//Attack the location that the mouse if over.
-	private static void DoAttack()
-	{
-		Point2D mouse;
-		mouse = SwinGame.MousePosition();
-		// Calculate the row/col clicked
-		int row;
-		int col;
-		row = Convert.ToInt32(Math.Floor(((mouse.Y - FIELD_TOP)
-							/ (CELL_HEIGHT + CELL_GAP))));
-		col = Convert.ToInt32(Math.Floor(((mouse.X - FIELD_LEFT)
-							/ (CELL_WIDTH + CELL_GAP))));
-		if (((row >= 0)
-					&& (row < HumanPlayer.EnemyGrid.Height)))
-		{
-			if (((col >= 0)
-						&& (col < HumanPlayer.EnemyGrid.Width)))
-			{
-				Attack(row, col);
-			}
-
-		}
-
-	}
-
-	//Draws the game during the attack phase.
-	//draw field draws the EnemyGrid
-	//drawsmallfield draws the HumanPlayer's grid on the left of the screen
-	public static void DrawDiscovery()
-	{
-		const int SCORES_LEFT = 172;
-		const int SHOTS_TOP = 157;
-		const int HITS_TOP = 206;
-		const int SPLASH_TOP = 256;
-		if (((SwinGame.KeyDown(KeyCode.VK_LSHIFT) || SwinGame.KeyDown(KeyCode.VK_RSHIFT))
-					&& SwinGame.KeyDown(KeyCode.VK_C)))
-		{
-			DrawField(HumanPlayer.EnemyGrid, ComputerPlayer, true);
+			whatShouldIPrint = "YOU LOSE!";
 		}
 		else
 		{
-			DrawField(HumanPlayer.EnemyGrid, ComputerPlayer, false);
+			whatShouldIPrint = "-- WINNER --";
 		}
 
-		DrawSmallField(HumanPlayer.PlayerGrid, HumanPlayer);
-		DrawMessage();
-		SwinGame.DrawText(HumanPlayer.Shots.ToString(), Color.White, GameFont("Menu"), SCORES_LEFT, SHOTS_TOP);
-		SwinGame.DrawText(HumanPlayer.Hits.ToString(), Color.White, GameFont("Menu"), SCORES_LEFT, HITS_TOP);
-		SwinGame.DrawText(HumanPlayer.Missed.ToString(), Color.White, GameFont("Menu"), SCORES_LEFT, SPLASH_TOP);
+		SwinGame.DrawText(whatShouldIPrint, Color.White, Color.Transparent, GameResources.GameFont("ArialLarge"), FontAlignment.AlignCenter, toDraw);
+
+
 	}
+
+	/// <summary>
+	/// Handle the input during the end of the game. Any interaction
+	/// will result in it reading in the highsSwinGame.
+	/// </summary>
+	public static void HandleEndOfGameInput()
+	{
+		if (SwinGame.MouseClicked(MouseButton.LeftButton) || SwinGame.KeyTyped(KeyCode.ReturnKey) || SwinGame.KeyTyped(KeyCode.EscapeKey))
+		{
+			HighScoreController.ReadHighScore(GameController.HumanPlayer.Score);
+			GameController.EndCurrentState();
+		}
+	}
+
 }

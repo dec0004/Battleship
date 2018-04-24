@@ -1,26 +1,34 @@
-class GameLogic
-{
+﻿using System;
 
+//========================================================================
+// This conversion was produced by the Free Edition of
+// Instant C# courtesy of Tangible Software Solutions.
+// Order the Premium Edition at https://www.tangiblesoftwaresolutions.com
+//========================================================================
+
+using SwinGameSDK;
+internal static class GameLogic
+{
 	public static void Main()
 	{
-		// Opens a new Graphics Window
+		//Opens a new Graphics Window
 		SwinGame.OpenGraphicsWindow("Battle Ships", 800, 600);
-		// Load Resources
-		LoadResources();
-		SwinGame.PlayMusic(GameMusic("Background"));
-		// Game Loop
-		for (
-		; (((SwinGame.WindowCloseRequested() == true)
-					|| (CurrentState == GameState.Quitting))
-					== false);
-		)
+
+		//Load Resources
+		GameResources.LoadResources();
+
+		SwinGame.PlayMusic(GameResources.GameMusic("Background"));
+
+		//Game Loop
+		do
 		{
-			HandleUserInput();
-			DrawScreen();
-		}
+			GameController.HandleUserInput();
+			GameController.DrawScreen();
+		} while (!(SwinGame.WindowCloseRequested() == true || GameController.CurrentState == GameState.Quitting));
 
 		SwinGame.StopMusic();
-		// Free Resources and Close Audio, to end the program.
-		FreeResources();
+
+		//Free Resources and Close Audio, to end the program.
+		GameResources.FreeResources();
 	}
 }
