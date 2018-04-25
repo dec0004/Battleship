@@ -1,16 +1,12 @@
-using Microsoft.VisualBasic;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics;
+﻿using System;
+using SwinGameSDK;
+
 /// <summary>
 /// The AIPlayer is a type of player. It can readomly deploy ships, it also has the
 /// functionality to generate coordinates and shoot at tiles
 /// </summary>
 public abstract class AIPlayer : Player
 {
-
 	/// <summary>
 	/// Location can store the location of the last hit made by an
 	/// AI Player. The use of which determines the difficulty.
@@ -18,16 +14,23 @@ public abstract class AIPlayer : Player
 	protected class Location
 	{
 		private int _Row;
-
 		private int _Column;
+
 		/// <summary>
 		/// The row of the shot
 		/// </summary>
 		/// <value>The row of the shot</value>
 		/// <returns>The row of the shot</returns>
-		public int Row {
-			get { return _Row; }
-			set { _Row = value; }
+		public int Row
+		{
+			get
+			{
+				return _Row;
+			}
+			set
+			{
+				_Row = value;
+			}
 		}
 
 		/// <summary>
@@ -35,9 +38,16 @@ public abstract class AIPlayer : Player
 		/// </summary>
 		/// <value>The column of the shot</value>
 		/// <returns>The column of the shot</returns>
-		public int Column {
-			get { return _Column; }
-			set { _Column = value; }
+		public int Column
+		{
+			get
+			{
+				return _Column;
+			}
+			set
+			{
+				_Column = value;
+			}
 		}
 
 		/// <summary>
@@ -51,16 +61,28 @@ public abstract class AIPlayer : Player
 			_Row = row;
 		}
 
-		/// <summary>
-		/// Check if two locations are equal
-		/// </summary>
-		/// <param name="this">location 1</param>
-		/// <param name="other">location 2</param>
-		/// <returns>true if location 1 and location 2 are at the same spot</returns>
-		public static bool operator ==(Location @this, Location other)
+        /// <summary>
+        /// Check if two locations are equal
+        /// </summary>
+        /// <param name="this">location 1</param>
+        /// <param name="other">location 2</param>
+        /// <returns>true if location 1 and location 2 are at the same spot</returns>
+
+        // TODO: FIX HERE UP
+        public static bool operator == (Location @this, Location other)
 		{
-			return @this != null && other != null && @this.Row == other.Row && @this.Column == other.Column;
-		}
+			//return @this != null && other != null && @this.Row == other.Row && @this.Column == other.Column;
+
+            if (@this != null && other != null && @this.Row == other.Row && @this.Column == other.Column)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
 
 		/// <summary>
 		/// Check if two locations are not equal
@@ -68,9 +90,17 @@ public abstract class AIPlayer : Player
 		/// <param name="this">location 1</param>
 		/// <param name="other">location 2</param>
 		/// <returns>true if location 1 and location 2 are not at the same spot</returns>
-		public static bool operator !=(Location @this, Location other)
+		public static bool operator != (Location @this, Location other)
 		{
-			return @this == null || other == null || @this.Row != other.Row || @this.Column != other.Column;
+            if (@this == null || other == null || @this.Row != other.Row || @this.Column != other.Column)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+			//return @this == null || other == null || @this.Row != other.Row || @this.Column != other.Column;
 		}
 	}
 
@@ -101,20 +131,18 @@ public abstract class AIPlayer : Player
 	/// <returns>The result of the last attack</returns>
 	public override AttackResult Attack()
 	{
-		AttackResult result = default(AttackResult);
+		AttackResult result = null;
 		int row = 0;
 		int column = 0;
 
-		//keep hitting until a miss
-		do {
+		do //keep hitting until a miss
+		{
 			Delay();
 
-			GenerateCoords(ref row, ref column);
-			//generate coordinates for shot
-			result = _game.Shoot(row, column);
-			//take shot
+			GenerateCoords(ref row, ref column); //generate coordinates for shot
+			result = _game.Shoot(row, column); //take shot
 			ProcessShot(row, column, result);
-		} while (result.Value != ResultOfAttack.Miss && result.Value != ResultOfAttack.GameOver && !SwinGame.WindowCloseRequested);
+		} while (result.Value != ResultOfAttack.Miss && result.Value != ResultOfAttack.GameOver && !SwinGame.WindowCloseRequested());
 
 		return result;
 	}
@@ -125,10 +153,13 @@ public abstract class AIPlayer : Player
 	private void Delay()
 	{
 		int i = 0;
-		for (i = 0; i <= 150; i++) {
+for (i = 0; i <= 150; i++)
+{
 			//Dont delay if window is closed
-			if (SwinGame.WindowCloseRequested)
+			if (SwinGame.WindowCloseRequested())
+			{
 				return;
+			}
 
 			SwinGame.Delay(5);
 			SwinGame.ProcessEvents();

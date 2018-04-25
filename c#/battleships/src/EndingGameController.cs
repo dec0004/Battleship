@@ -1,9 +1,11 @@
-using Microsoft.VisualBasic;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics;
+﻿using System;
+
+//========================================================================
+// This conversion was produced by the Free Edition of
+// Instant C# courtesy of Tangible Software Solutions.
+// Order the Premium Edition at https://www.tangiblesoftwaresolutions.com
+//========================================================================
+
 using SwinGameSDK;
 
 /// <summary>
@@ -11,7 +13,7 @@ using SwinGameSDK;
 /// of a game.
 /// </summary>
 
-static class EndingGameController
+internal static class EndingGameController
 {
 
 	/// <summary>
@@ -20,24 +22,27 @@ static class EndingGameController
 	public static void DrawEndOfGame()
 	{
 
-		Rectangle toDraw = default(Rectangle);
+       Rectangle toDraw = new Rectangle();
 		string whatShouldIPrint = null;
 
-		DrawField(ComputerPlayer.PlayerGrid, ComputerPlayer, true);
-		DrawSmallField(HumanPlayer.PlayerGrid, HumanPlayer);
+		UtilityFunctions.DrawField(GameController.ComputerPlayer.PlayerGrid, GameController.ComputerPlayer, true);
+		UtilityFunctions.DrawSmallField(GameController.HumanPlayer.PlayerGrid, GameController.HumanPlayer);
 
-		toDraw.X = 0;
+		 toDraw.X = 0;
 		toDraw.Y = 250;
 		toDraw.Width = SwinGame.ScreenWidth();
 		toDraw.Height = SwinGame.ScreenHeight();
 
-		if (HumanPlayer.IsDestroyed) {
+		if (GameController.HumanPlayer.IsDestroyed)
+		{
 			whatShouldIPrint = "YOU LOSE!";
-		} else {
+		}
+		else
+		{
 			whatShouldIPrint = "-- WINNER --";
 		}
 
-		SwinGame.DrawTextLines(whatShouldIPrint, Color.White, Color.Transparent, GameResources.GameFont("ArialLarge"), FontAlignment.AlignCenter, toDraw);
+		SwinGame.DrawText(whatShouldIPrint, Color.White, Color.Transparent, GameResources.GameFont("ArialLarge"), FontAlignment.AlignCenter, toDraw);
 
 
 	}
@@ -48,9 +53,10 @@ static class EndingGameController
 	/// </summary>
 	public static void HandleEndOfGameInput()
 	{
-		if (SwinGame.MouseClicked(MouseButton.LeftButton) || SwinGame.KeyTyped(KeyCode.VK_RETURN) || SwinGame.KeyTyped(KeyCode.VK_ESCAPE)) {
-			ReadHighScore(HumanPlayer.Score);
-			EndCurrentState();
+		if (SwinGame.MouseClicked(MouseButton.LeftButton) || SwinGame.KeyTyped(KeyCode.ReturnKey) || SwinGame.KeyTyped(KeyCode.EscapeKey))
+		{
+			HighScoreController.ReadHighScore(GameController.HumanPlayer.Score);
+			GameController.EndCurrentState();
 		}
 	}
 

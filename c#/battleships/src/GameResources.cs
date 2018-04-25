@@ -1,10 +1,13 @@
-using Microsoft.VisualBasic;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics;
+﻿using System;
+
+//========================================================================
+// This conversion was produced by the Free Edition of
+// Instant C# courtesy of Tangible Software Solutions.
+// Order the Premium Edition at https://www.tangiblesoftwaresolutions.com
+//========================================================================
+
 using SwinGameSDK;
+using System.Collections.Generic;
 
 public static class GameResources
 {
@@ -33,7 +36,8 @@ public static class GameResources
 
 		//Ships
 		int i = 0;
-		for (i = 1; i <= 5; i++) {
+for (i = 1; i <= 5; i++)
+{
 			NewImage("ShipLR" + i, "ship_deploy_horiz_" + i + ".png");
 			NewImage("ShipUD" + i, "ship_deploy_vert_" + i + ".png");
 		}
@@ -107,15 +111,15 @@ public static class GameResources
 	private static Dictionary<string, Bitmap> _Images = new Dictionary<string, Bitmap>();
 	private static Dictionary<string, Font> _Fonts = new Dictionary<string, Font>();
 	private static Dictionary<string, SoundEffect> _Sounds = new Dictionary<string, SoundEffect>();
-
 	private static Dictionary<string, Music> _Music = new Dictionary<string, Music>();
+
 	private static Bitmap _Background;
 	private static Bitmap _Animation;
 	private static Bitmap _LoaderFull;
 	private static Bitmap _LoaderEmpty;
 	private static Font _LoadingFont;
-
 	private static SoundEffect _StartSound;
+
 	/// <summary>
 	/// The Resources Class stores all of the Games Media Resources, such as Images, Fonts
 	/// Sounds, Music.
@@ -164,7 +168,7 @@ public static class GameResources
 
 		_Animation = SwinGame.LoadBitmap(SwinGame.PathToResource("SwinGameAni.jpg", ResourceKind.BitmapResource));
 		_LoadingFont = SwinGame.LoadFont(SwinGame.PathToResource("arial.ttf", ResourceKind.FontResource), 12);
-		_StartSound = Audio.LoadSoundEffect(SwinGame.PathToResource("SwinGameStart.ogg", ResourceKind.SoundResource));
+		//_StartSound = Audio.LoadSoundEffect(SwinGame.PathToResource("SwinGameStart.ogg", ResourceKind.SoundResource));
 
 		_LoaderFull = SwinGame.LoadBitmap(SwinGame.PathToResource("loader_full.png", ResourceKind.BitmapResource));
 		_LoaderEmpty = SwinGame.LoadBitmap(SwinGame.PathToResource("loader_empty.png", ResourceKind.BitmapResource));
@@ -180,7 +184,8 @@ public static class GameResources
 		SwinGame.Delay(200);
 
 		int i = 0;
-		for (i = 0; i <= ANI_CELL_COUNT - 1; i++) {
+		for (i = 0; i < ANI_CELL_COUNT; i++)
+		{
 			SwinGame.DrawBitmap(_Background, 0, 0);
 			SwinGame.Delay(20);
 			SwinGame.RefreshScreen();
@@ -202,19 +207,19 @@ public static class GameResources
 		const int BG_Y = 453;
 
 		int fullW = 0;
-		Rectangle toDraw = default(Rectangle);
+        Rectangle toDraw = new Rectangle();
 
 		fullW = 260 * number / STEPS;
 		SwinGame.DrawBitmap(_LoaderEmpty, BG_X, BG_Y);
 		SwinGame.DrawCell(_LoaderFull, 0, BG_X, BG_Y);
-		// SwinGame.DrawBitmapPart(_LoaderFull, 0, 0, fullW, 66, BG_X, BG_Y)
+       // SwinGame.DrawBitmap(_LoaderFull, 0, 0, fullW, 66, BG_X, BG_Y);
 
 		toDraw.X = TX;
 		toDraw.Y = TY;
 		toDraw.Width = TW;
 		toDraw.Height = TH;
-		SwinGame.DrawTextLines(message, Color.White, Color.Transparent, _LoadingFont, FontAlignment.AlignCenter, toDraw);
-		// SwinGame.DrawTextLines(message, Color.White, Color.Transparent, _LoadingFont, FontAlignment.AlignCenter, TX, TY, TW, TH)
+		SwinGame.DrawText(message, Color.White, Color.Transparent, _LoadingFont, FontAlignment.AlignCenter, toDraw);
+       // SwinGame.DrawText(message, Color.White, Color.Transparent, _LoadingFont, FontAlignment.AlignCenter, TX, TY, TW, TH);
 
 		SwinGame.RefreshScreen();
 		SwinGame.ProcessEvents();
@@ -267,32 +272,40 @@ public static class GameResources
 
 	private static void FreeFonts()
 	{
-		Font obj = default(Font);
-		foreach ( obj in _Fonts.Values) {
+//INSTANT C# NOTE: Commented this declaration since looping variables in 'foreach' loops are declared in the 'foreach' header in C#:
+//		Font obj = null;
+		foreach (Font obj in _Fonts.Values)
+		{
 			SwinGame.FreeFont(obj);
 		}
 	}
 
 	private static void FreeImages()
 	{
-		Bitmap obj = default(Bitmap);
-		foreach ( obj in _Images.Values) {
+//INSTANT C# NOTE: Commented this declaration since looping variables in 'foreach' loops are declared in the 'foreach' header in C#:
+//		Bitmap obj = null;
+		foreach (Bitmap obj in _Images.Values)
+		{
 			SwinGame.FreeBitmap(obj);
 		}
 	}
 
 	private static void FreeSounds()
-	{
-		SoundEffect obj = default(SoundEffect);
-		foreach ( obj in _Sounds.Values) {
+	{/*
+//INSTANT C# NOTE: Commented this declaration since looping variables in 'foreach' loops are declared in the 'foreach' header in C#:
+//		SoundEffect obj = null;
+		foreach (SoundEffect obj in _Sounds.Values)
+		{
 			Audio.FreeSoundEffect(obj);
-		}
+		}*/
 	}
 
 	private static void FreeMusic()
 	{
-		Music obj = default(Music);
-		foreach ( obj in _Music.Values) {
+//INSTANT C# NOTE: Commented this declaration since looping variables in 'foreach' loops are declared in the 'foreach' header in C#:
+//		Music obj = null;
+		foreach (Music obj in _Music.Values)
+		{
 			Audio.FreeMusic(obj);
 		}
 	}

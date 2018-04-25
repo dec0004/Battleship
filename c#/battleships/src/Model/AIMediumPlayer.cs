@@ -1,9 +1,6 @@
-using Microsoft.VisualBasic;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics;
+
 
 /// <summary>
 /// The AIMediumPlayer is a type of AIPlayer where it will try and destroy a ship
@@ -23,8 +20,8 @@ public class AIMediumPlayer : AIPlayer
 	}
 
 	private AIStates _CurrentState = AIStates.Searching;
-
 	private Stack<Location> _Targets = new Stack<Location>();
+
 	public AIMediumPlayer(BattleShipsGame controller) : base(controller)
 	{
 	}
@@ -38,10 +35,12 @@ public class AIMediumPlayer : AIPlayer
 	/// <param name="column">the generated column</param>
 	protected override void GenerateCoords(ref int row, ref int column)
 	{
-		do {
+		do
+		{
 			//check which state the AI is in and uppon that choose which coordinate generation
 			//method will be used.
-			switch (_CurrentState) {
+			switch (_CurrentState)
+			{
 				case AIStates.Searching:
 					SearchCoords(ref row, ref column);
 					break;
@@ -51,8 +50,7 @@ public class AIMediumPlayer : AIPlayer
 				default:
 					throw new ApplicationException("AI has gone in an imvalid state");
 			}
-		} while ((row < 0 || column < 0 || row >= EnemyGrid.Height || column >= EnemyGrid.Width || EnemyGrid.Item(row, column) != TileView.Sea));
-		//while inside the grid and not a sea tile do the search
+		} while (row < 0 || column < 0 || row >= EnemyGrid.Height || column >= EnemyGrid.Width || EnemyGrid.get_Item(row, column) != TileView.Sea); //while inside the grid and not a sea tile do the search
 	}
 
 	/// <summary>
@@ -65,8 +63,10 @@ public class AIMediumPlayer : AIPlayer
 	{
 		Location l = _Targets.Pop();
 
-		if ((_Targets.Count == 0))
+		if (_Targets.Count == 0)
+		{
 			_CurrentState = AIStates.Searching;
+		}
 		row = l.Row;
 		column = l.Column;
 	}
@@ -90,16 +90,19 @@ public class AIMediumPlayer : AIPlayer
 	/// <param name="row">the row it needs to process</param>
 	/// <param name="col">the column it needs to process</param>
 	/// <param name="result">the result og the last shot (should be hit)</param>
-
 	protected override void ProcessShot(int row, int col, AttackResult result)
 	{
-		if (result.Value == ResultOfAttack.Hit) {
+
+		if (result.Value == ResultOfAttack.Hit)
+		{
 			_CurrentState = AIStates.TargetingShip;
 			AddTarget(row - 1, col);
 			AddTarget(row, col - 1);
 			AddTarget(row + 1, col);
 			AddTarget(row, col + 1);
-		} else if (result.Value == ResultOfAttack.ShotAlready) {
+		}
+		else if (result.Value == ResultOfAttack.ShotAlready)
+		{
 			throw new ApplicationException("Error in AI");
 		}
 	}
@@ -111,8 +114,9 @@ public class AIMediumPlayer : AIPlayer
 	/// <param name="column">the column of the targets location</param>
 	private void AddTarget(int row, int column)
 	{
+		if (row >= 0 && column >= 0 && row < EnemyGrid.Height && column < EnemyGrid.Width && EnemyGrid.get_Item(row, column) == TileView.Sea)
+		{
 
-		if (row >= 0 && column >= 0 && row < EnemyGrid.Height && column < EnemyGrid.Width && EnemyGrid.Item(row, column) == TileView.Sea) {
 			_Targets.Push(new Location(row, column));
 		}
 	}

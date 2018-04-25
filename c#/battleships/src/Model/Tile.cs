@@ -1,32 +1,31 @@
-using Microsoft.VisualBasic;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics;
+﻿using System;
+
 /// <summary>
 /// Tile knows its location on the grid, if it is a ship and if it has been 
 /// shot before
 /// </summary>
 public class Tile
 {
-		//the row value of the tile
-	private readonly int _RowValue;
-		//the column value of the tile
-	private readonly int _ColumnValue;
-		//the ship the tile belongs to
-	private Ship _Ship = null;
-		//the tile has been shot at
-	private bool _Shot = false;
+	private readonly int _RowValue; //the row value of the tile
+	private readonly int _ColumnValue; //the column value of the tile
+	private Ship _Ship = null; //the ship the tile belongs to
+	private bool _Shot = false; //the tile has been shot at
 
 	/// <summary>
 	/// Has the tile been shot?
 	/// </summary>
 	/// <value>indicate if the tile has been shot</value>
 	/// <returns>true if the tile was shot</returns>
-	public bool Shot {
-		get { return _Shot; }
-		set { _Shot = value; }
+	public bool Shot
+	{
+		get
+		{
+			return _Shot;
+		}
+		set
+		{
+			_Shot = value;
+		}
 	}
 
 	/// <summary>
@@ -34,8 +33,12 @@ public class Tile
 	/// </summary>
 	/// <value>the row index of the tile in the grid</value>
 	/// <returns>the row index of the tile</returns>
-	public int Row {
-		get { return _RowValue; }
+	public int Row
+	{
+		get
+		{
+			return _RowValue;
+		}
 	}
 
 	/// <summary>
@@ -43,29 +46,42 @@ public class Tile
 	/// </summary>
 	/// <value>the column of the tile in the grid</value>
 	/// <returns>the column of the tile in the grid</returns>
-	public int Column {
-		get { return _ColumnValue; }
+	public int Column
+	{
+		get
+		{
+			return _ColumnValue;
+		}
 	}
 
 	/// <summary>
 	/// Ship allows for a tile to check if there is ship and add a ship to a tile
 	/// </summary>
-	public Ship Ship {
-		get { return _Ship; }
-		set {
-			if (_Ship == null) {
+	public Ship Ship
+	{
+		get
+		{
+			return _Ship;
+		}
+		set
+		{
+			if (_Ship == null)
+			{
 				_Ship = value;
-				if (value != null) {
+				if (value != null)
+				{
 					_Ship.AddTile(this);
 				}
-			} else {
+			}
+			else
+			{
 				throw new InvalidOperationException("There is already a ship at [" + Row + ", " + Column + "]");
 			}
 		}
 	}
 
 	/// <summary>
-	/// The tile constructor will know where it is on the grid, and is its a ship
+	/// The tile constructor will know where it is on the grid, and if its a ship
 	/// </summary>
 	/// <param name="row">the row on the grid</param>
 	/// <param name="col">the col on the grid</param>
@@ -77,10 +93,12 @@ public class Tile
 		_Ship = ship;
 	}
 
-	/// <summary>
-	/// Clearship will remove the ship from the tile
-	/// </summary>
-	public void ClearShip()
+
+
+    /// <summary>
+    /// Clearship will remove the ship from the tile
+    /// </summary>
+    public void ClearShip()
 	{
 		_Ship = null;
 	}
@@ -88,23 +106,34 @@ public class Tile
 	/// <summary>
 	/// View is able to tell the grid what the tile is
 	/// </summary>
-	public TileView View {
-		get {
+	public TileView View
+	{
+		get
+		{
 			//if there is no ship in the tile
-			if (_Ship == null) {
+			if (_Ship == null)
+			{
 				//and the tile has been hit
+				if (_Shot)
+				{
 
-				if (_Shot) {
 					return TileView.Miss;
-				} else {
+				}
+				else
+				{
 					//and the tile hasn't been hit
 					return TileView.Sea;
 				}
-			} else {
+			}
+			else
+			{
 				//if there is a ship and it has been hit
-				if ((_Shot)) {
+				if (_Shot)
+				{
 					return TileView.Hit;
-				} else {
+				}
+				else
+				{
 					//if there is a ship and it hasn't been hit
 					return TileView.Ship;
 				}
@@ -118,12 +147,16 @@ public class Tile
 	/// </summary>
 	internal void Shoot()
 	{
-		if ((false == Shot)) {
+		if (false == Shot)
+		{
 			Shot = true;
-			if (_Ship != null) {
+			if (_Ship != null)
+			{
 				_Ship.Hit();
 			}
-		} else {
+		}
+		else
+		{
 			throw new ApplicationException("You have already shot this square");
 		}
 	}
