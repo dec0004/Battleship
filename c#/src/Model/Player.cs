@@ -2,16 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 
-//========================================================================
-// This conversion was produced by the Free Edition of
-// Instant C# courtesy of Tangible Software Solutions.
-// Order the Premium Edition at https://www.tangiblesoftwaresolutions.com
-//========================================================================
-
-/// <summary>
-/// Player has its own _PlayerGrid, and can see an _EnemyGrid, it can also check if
-/// all ships are deployed and if all ships are detroyed. A Player can also attach.
-/// </summary>
+//<summary>
+// Player has its own _PlayerGrid, and can see an _EnemyGrid, it can also check if
+// all ships are deployed and if all ships are detroyed. A Player can also attach
+// to random tiles.
+// </summary>
 public class Player : IEnumerable<Ship>
 {
 	private bool InstanceFieldsInitialized = false;
@@ -29,16 +24,16 @@ public class Player : IEnumerable<Ship>
 	private ISeaGrid _enemyGrid;
 	protected BattleShipsGame _game;
 
-	private int _shots;
-	private int _hits;
-	private int _misses;
+	private int _shots; // How many shots the player took
+    private int _hits; // How many hits the player has
+    private int _misses; // How many misses
 
-	/// <summary>
-	/// Returns the game that the player is part of.
-	/// </summary>
-	/// <value>The game</value>
-	/// <returns>The game that the player is playing</returns>
-	public BattleShipsGame Game
+    // <summary>
+    // Returns the game that the player is part of.
+    // </summary>
+    // <value>The game</value>
+    // <returns>The game that the player is playing</returns>
+    public BattleShipsGame Game
 	{
 		get
 		{
@@ -50,10 +45,10 @@ public class Player : IEnumerable<Ship>
 		}
 	}
 
-	/// <summary>
-	/// Sets the grid of the enemy player
-	/// </summary>
-	/// <value>The enemy's sea grid</value>
+	// <summary>
+	// Sets the grid of the enemy player
+	// </summary>
+	// <value>The enemy's sea grid</value>
 	public ISeaGrid Enemy
 	{
 		set
@@ -71,7 +66,7 @@ public class Player : IEnumerable<Ship>
 		}
 		_game = controller;
 
-		//for each ship add the ships name so the seagrid knows about them
+		// For each ship add the ships name so the seagrid knows about them
 		foreach (ShipName name in Enum.GetValues(typeof(ShipName)))
 		{
 			if (name != ShipName.None)
@@ -83,9 +78,9 @@ public class Player : IEnumerable<Ship>
 		RandomizeDeployment();
 	}
 
-	/// <summary>
-	/// The EnemyGrid is a ISeaGrid because you shouldn't be allowed to see the enemies ships
-	/// </summary>
+	// <summary>
+	// The EnemyGrid is a ISeaGrid because you shouldn't be allowed to see the enemies ships
+	// </summary>
 	public ISeaGrid EnemyGrid
 	{
 		get
@@ -98,9 +93,9 @@ public class Player : IEnumerable<Ship>
 		}
 	}
 
-	/// <summary>
-	/// The PlayerGrid is just a normal SeaGrid where the players ships can be deployed and seen
-	/// </summary>
+	// <summary>
+	// The PlayerGrid is just a normal SeaGrid where the players ships can be deployed and seen
+	// </summary>
 	public SeaGrid PlayerGrid
 	{
 		get
@@ -109,9 +104,9 @@ public class Player : IEnumerable<Ship>
 		}
 	}
 
-	/// <summary>
-	/// ReadyToDeploy returns true if all ships are deployed
-	/// </summary>
+	// <summary>
+	// ReadyToDeploy returns true if all ships are deployed
+	// </summary>
 	public bool ReadyToDeploy
 	{
 		get
@@ -124,20 +119,19 @@ public class Player : IEnumerable<Ship>
 	{
 		get
 		{
-			//Check if all ships are destroyed... -1 for the none ship
+			// Check if all ships are destroyed... -1 for the none ship
 			return _playerGrid.ShipsKilled == Enum.GetValues(typeof(ShipName)).Length - 1;
 		}
 	}
 
-	/// <summary>
-	/// Returns the Player's ship with the given name.
-	/// </summary>
-	/// <param name="name">the name of the ship to return</param>
-	/// <value>The ship</value>
-	/// <returns>The ship with the indicated name</returns>
-	/// <remarks>The none ship returns nothing/null</remarks>
-//INSTANT C# NOTE: C# does not support parameterized properties - the following property has been rewritten as a function:
-//ORIGINAL LINE: Public ReadOnly Property Ship(ByVal name As ShipName) As Ship
+	// <summary>
+	// Returns the Player's ship with the given name.
+	// </summary>
+	// <param name="name">the name of the ship to return</param>
+	// <value>The ship</value>
+	// <returns>The ship with the indicated name</returns>
+	// <remarks>The none ship returns nothing/null</remarks>
+
 	public Ship get_Ship(ShipName name)
 	{
 		if (name == ShipName.None)
@@ -148,11 +142,11 @@ public class Player : IEnumerable<Ship>
 		return _Ships[name];
 	}
 
-	/// <summary>
-	/// The number of shots the player has made
-	/// </summary>
-	/// <value>shots taken</value>
-	/// <returns>teh number of shots taken</returns>
+	// <summary>
+	// The number of shots the player has made
+	// </summary>
+	// <value>shots taken</value>
+	// <returns>the number of shots taken</returns>
 	public int Shots
 	{
 		get
@@ -161,7 +155,12 @@ public class Player : IEnumerable<Ship>
 		}
 	}
 
-	public int Hits
+    // <summary>
+    // The number of hits the player has scored
+    // </summary>
+    // <value>hits</value>
+    // <returns>How many hits the player has scored</returns>
+    public int Hits
 	{
 		get
 		{
@@ -169,11 +168,11 @@ public class Player : IEnumerable<Ship>
 		}
 	}
 
-	/// <summary>
-	/// Total number of shots that missed
-	/// </summary>
-	/// <value>miss count</value>
-	/// <returns>the number of shots that have missed ships</returns>
+	// <summary>
+	// Total number of shots that missed
+	// </summary>
+	// <value>miss count</value>
+	// <returns>the number of shots that have missed ships</returns>
 	public int Missed
 	{
 		get
@@ -182,7 +181,12 @@ public class Player : IEnumerable<Ship>
 		}
 	}
 
-	public int Score
+
+    // <summary>
+    // The player's score. The more shots they take, the lesser their score.
+    // </summary>
+    // <returns>The player's score</returns>
+    public int Score
 	{
 		get
 		{
@@ -197,11 +201,11 @@ public class Player : IEnumerable<Ship>
 		}
 	}
 
-	/// <summary>
-	/// Makes it possible to enumerate over the ships the player
-	/// has.
-	/// </summary>
-	/// <returns>A Ship enumerator</returns>
+	// <summary>
+	// Makes it possible to enumerate over the ships the player
+	// has.
+	// </summary>
+	// <returns>A Ship enumerator</returns>
 	IEnumerator<Ship> IEnumerable<Ship>.GetEnumerator()
 	{
 		return this.GetShipEnumerator();
@@ -216,11 +220,11 @@ public class Player : IEnumerable<Ship>
 		return lst.GetEnumerator();
 	}
 
-	/// <summary>
-	/// Makes it possible to enumerate over the ships the player
-	/// has.
-	/// </summary>
-	/// <returns>A Ship enumerator</returns>
+	// <summary>
+	// Makes it possible to enumerate over the ships the player
+	// has.
+	// </summary>
+	// <returns>A Ship enumerator</returns>
 	public IEnumerator GetEnumerator()
 	{
 		Ship[] result = new Ship[_Ships.Values.Count + 1];
@@ -231,21 +235,21 @@ public class Player : IEnumerable<Ship>
 		return lst.GetEnumerator();
 	}
 
-	/// <summary>
-	/// Vitual Attack allows the player to shoot
-	/// </summary>
+	// <summary>
+	// Virtual Attack allows the player to shoot
+	// </summary>
 	public virtual AttackResult Attack()
 	{
 		//human does nothing here...
 		return null;
 	}
 
-	/// <summary>
-	/// Shoot at a given row/column
-	/// </summary>
-	/// <param name="row">the row to attack</param>
-	/// <param name="col">the column to attack</param>
-	/// <returns>the result of the attack</returns>
+	// <summary>
+	// Shoot at a given row/column
+	// </summary>
+	// <param name="row">the row to attack</param>
+	// <param name="col">the column to attack</param>
+	// <returns>the result of the attack</returns>
 	internal AttackResult Shoot(int row, int col)
 	{
 		_shots += 1;
@@ -270,8 +274,8 @@ public class Player : IEnumerable<Ship>
 		bool placementSuccessful = false;
 		Direction heading = 0;
 
-		//for each ship to deploy in shipist
-		foreach (ShipName shipToPlace in Enum.GetValues(typeof(ShipName)))
+        // Reiterate for each ship to deploy in ship list
+        foreach (ShipName shipToPlace in Enum.GetValues(typeof(ShipName)))
 		{
 
 			if (shipToPlace == ShipName.None)
@@ -281,7 +285,7 @@ public class Player : IEnumerable<Ship>
 
 			placementSuccessful = false;
 
-			//generate random position until the ship can be placed
+			// Generate random position until the ship can be placed
 			do
 			{
 				int dir = _Random.Next(2);
@@ -298,7 +302,7 @@ public class Player : IEnumerable<Ship>
 					heading = Direction.LeftRight;
 				}
 
-				//try to place ship, if position unplaceable, generate new coordinates
+				// Try to place ship, if position unplaceable, generate new coordinates
 				try
 				{
 					PlayerGrid.MoveShip(x, y, shipToPlace, heading);

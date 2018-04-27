@@ -1,24 +1,17 @@
 ﻿using System;
-
-//========================================================================
-// This conversion was produced by the Free Edition of
-// Instant C# courtesy of Tangible Software Solutions.
-// Order the Premium Edition at https://www.tangiblesoftwaresolutions.com
-//========================================================================
-
 using SwinGameSDK;
 
-/// <summary>
-/// The EndingGameController is responsible for managing the interactions at the end
-/// of a game.
-/// </summary>
+//<summary>
+// The EndingGameController is responsible for managing the interactions at the end
+// of a game.
+// </summary>
 
 internal static class EndingGameController
 {
 
-	/// <summary>
-	/// Draw the end of the game screen, shows the win/lose state
-	/// </summary>
+	// <summary>
+	// Draw the end of the game screen, shows the win/lose state
+	// </summary>
 	public static void DrawEndOfGame()
 	{
 
@@ -47,10 +40,10 @@ internal static class EndingGameController
 
 	}
 
-	/// <summary>
-	/// Handle the input during the end of the game. Any interaction
-	/// will result in it reading in the highsSwinGame.
-	/// </summary>
+	// <summary>
+	// Handle the input during the end of the game. Any interaction
+	// will result in it reading in the highsSwinGame.
+	// </summary>
 	public static void HandleEndOfGameInput()
 	{
 		if (SwinGame.MouseClicked(MouseButton.LeftButton) || SwinGame.KeyTyped(KeyCode.ReturnKey) || SwinGame.KeyTyped(KeyCode.EscapeKey))

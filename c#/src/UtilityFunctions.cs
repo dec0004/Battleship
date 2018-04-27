@@ -2,16 +2,11 @@
 using System.Collections.Generic;
 using SwinGameSDK;
 
-//========================================================================
-// This conversion was produced by the Free Edition of
-// Instant C# courtesy of Tangible Software Solutions.
-// Order the Premium Edition at https://www.tangiblesoftwaresolutions.com
-//========================================================================
 
-/// <summary>
-/// This includes a number of utility methods for
-/// drawing and interacting with the Mouse.
-/// </summary>
+// <summary>
+// This includes a number of utility methods for
+// drawing and interacting with the Mouse.
+// </summary>
 internal static class UtilityFunctions
 {
 	public const int FIELD_TOP = 122;
@@ -45,14 +40,14 @@ internal static class UtilityFunctions
 	public const int ANIMATION_CELLS = 7;
 	public const int FRAMES_PER_CELL = 8;
 
-	/// <summary>
-	/// Determines if the mouse is in a given rectangle.
-	/// </summary>
-	/// <param name="x">the x location to check</param>
-	/// <param name="y">the y location to check</param>
-	/// <param name="w">the width to check</param>
-	/// <param name="h">the height to check</param>
-	/// <returns>true if the mouse is in the area checked</returns>
+	// <summary>
+	// Determines if the mouse is in a given rectangle.
+	// </summary>
+	// <param name="x">the x location to check</param>
+	// <param name="y">the y location to check</param>
+	// <param name="w">the width to check</param>
+	// <param name="h">the height to check</param>
+	// <returns>true if the mouse is in the area checked</returns>
 	public static bool IsMouseInRectangle(int x, int y, int w, int h)
 	{
         Point2D mouse;
@@ -60,10 +55,10 @@ internal static class UtilityFunctions
 
 		mouse = SwinGame.MousePosition();
 
-		//if the mouse is inline with the button horizontally
+		// If the mouse is inline with the button horizontally
 		if (mouse.X >= x && mouse.X <= x + w)
 		{
-			//Check vertical position
+			// Check vertical position
 			if (mouse.Y >= y && mouse.Y <= y + h)
 			{
 				result = true;
@@ -73,22 +68,22 @@ internal static class UtilityFunctions
 		return result;
 	}
 
-	/// <summary>
-	/// Draws a large field using the grid and the indicated player's ships.
-	/// </summary>
-	/// <param name="grid">the grid to draw</param>
-	/// <param name="thePlayer">the players ships to show</param>
-	/// <param name="showShips">indicates if the ships should be shown</param>
+	// <summary>
+	// Draws a large field using the grid and the indicated player's ships.
+	// </summary>
+	// <param name="grid">the grid to draw</param>
+	// <param name="thePlayer">the players ships to show</param>
+	// <param name="showShips">indicates if the ships should be shown</param>
 	public static void DrawField(ISeaGrid grid, Player thePlayer, bool showShips)
 	{
 		DrawCustomField(grid, thePlayer, false, showShips, FIELD_LEFT, FIELD_TOP, FIELD_WIDTH, FIELD_HEIGHT, CELL_WIDTH, CELL_HEIGHT, CELL_GAP);
 	}
 
-	/// <summary>
-	/// Draws a small field, showing the attacks made and the locations of the player's ships
-	/// </summary>
-	/// <param name="grid">the grid to show</param>
-	/// <param name="thePlayer">the player to show the ships of</param>
+	// <summary>
+	// Draws a small field, showing the attacks made and the locations of the player's ships
+	// </summary>
+	// <param name="grid">the grid to show</param>
+	// <param name="thePlayer">the player to show the ships of</param>
 	public static void DrawSmallField(ISeaGrid grid, Player thePlayer)
 	{
 		const int SMALL_FIELD_LEFT = 39;
@@ -102,20 +97,20 @@ internal static class UtilityFunctions
 		DrawCustomField(grid, thePlayer, true, true, SMALL_FIELD_LEFT, SMALL_FIELD_TOP, SMALL_FIELD_WIDTH, SMALL_FIELD_HEIGHT, SMALL_FIELD_CELL_WIDTH, SMALL_FIELD_CELL_HEIGHT, SMALL_FIELD_CELL_GAP);
 	}
 
-	/// <summary>
-	/// Draws the player's grid and ships.
-	/// </summary>
-	/// <param name="grid">the grid to show</param>
-	/// <param name="thePlayer">the player to show the ships of</param>
-	/// <param name="small">true if the small grid is shown</param>
-	/// <param name="showShips">true if ships are to be shown</param>
-	/// <param name="left">the left side of the grid</param>
-	/// <param name="top">the top of the grid</param>
-	/// <param name="width">the width of the grid</param>
-	/// <param name="height">the height of the grid</param>
-	/// <param name="cellWidth">the width of each cell</param>
-	/// <param name="cellHeight">the height of each cell</param>
-	/// <param name="cellGap">the gap between the cells</param>
+	// <summary>
+	// Draws the player's grid and ships.
+	// </summary>
+	// <param name="grid">the grid to show</param>
+	// <param name="thePlayer">the player to show the ships of</param>
+	// <param name="small">true if the small grid is shown</param>
+	// <param name="showShips">true if ships are to be shown</param>
+	// <param name="left">the left side of the grid</param>
+	// <param name="top">the top of the grid</param>
+	// <param name="width">the width of the grid</param>
+	// <param name="height">the height of the grid</param>
+	// <param name="cellWidth">the width of each cell</param>
+	// <param name="cellHeight">the height of each cell</param>
+	// <param name="cellGap">the gap between the cells</param>
 	private static void DrawCustomField(ISeaGrid grid, Player thePlayer, bool small, bool showShips, int left, int top, int width, int height, int cellWidth, int cellHeight, int cellGap)
 	{
 		//SwinGame.FillRectangle(Color.Blue, left, top, width, height)
@@ -156,7 +151,7 @@ internal static class UtilityFunctions
 		int shipWidth = 0;
 		string shipName = null;
 
-		//Draw the ships
+		// Draw the ships
 		foreach (Ship s in thePlayer)
 		{
 			if (s == null || !s.IsDeployed)
@@ -180,7 +175,10 @@ internal static class UtilityFunctions
 				shipWidth = cellWidth - (SHIP_GAP * 2);
 			}
 
-			if (!small)
+            //if the grid is not small...
+            //else draw the ships
+
+            if (!small)
 			{
 				SwinGame.DrawBitmap(GameResources.GameImage(shipName), colLeft, rowTop);
 			}
@@ -221,9 +219,9 @@ internal static class UtilityFunctions
                     fillColor = LARGE_HIT;
                 }
                 break;
-            case TileView.Sea:
 
-           //case TileView.Ship:
+
+            case TileView.Sea:
                 if (small)
                 {
                     fillColor = SMALL_SEA;
@@ -238,11 +236,11 @@ internal static class UtilityFunctions
 
     private static string _message;
 
-	/// <summary>
-	/// The message to display
-	/// </summary>
-	/// <value>The message to display</value>
-	/// <returns>The message to display</returns>
+	// <summary>
+	// The message to display
+	// </summary>
+	// <value>The message to display</value>
+	// <returns>The message to display</returns>
 	public static string Message
 	{
 		get
@@ -255,17 +253,17 @@ internal static class UtilityFunctions
 		}
 	}
 
-	/// <summary>
-	/// Draws the message to the screen
-	/// </summary>
+	// <summary>
+	// Draws the message to the screen
+	// </summary>
 	public static void DrawMessage()
 	{
 		SwinGame.DrawText(Message, MESSAGE_COLOR, GameResources.GameFont("Courier"), FIELD_LEFT, MESSAGE_TOP);
 	}
 
-	/// <summary>
-	/// Draws the background for the current state of the game
-	/// </summary>
+	// <summary>
+	// Draws the background for the current state of the game
+	// </summary>
 	public static void DrawBackground()
 	{
 
@@ -292,7 +290,8 @@ internal static class UtilityFunctions
 		SwinGame.DrawFramerate(675, 585);
 	}
 
-	public static void AddExplosion(int row, int col)
+    // Add explosion and splash animations to specified row and column
+    public static void AddExplosion(int row, int col)
 	{
 		AddAnimation(row, col, "Splash");
 	}
@@ -304,7 +303,7 @@ internal static class UtilityFunctions
 
 	private static List<Sprite> _Animations = new List<Sprite>();
 
-	private static void AddAnimation(int row, int col, string image)
+    private static void AddAnimation(int row, int col, string image)
 	{
 		Sprite s = null;
 		Bitmap imgObj = GameResources.GameImage(image);
@@ -321,7 +320,8 @@ internal static class UtilityFunctions
 		_Animations.Add(s);
 	}
 
-	public static void UpdateAnimations()
+    // Update animations - if animation has ended, remove the animation
+    public static void UpdateAnimations()
 	{
 		List<Sprite> ended = new List<Sprite>();
 		foreach (Sprite s in _Animations)
@@ -340,7 +340,9 @@ internal static class UtilityFunctions
 		}
 	}
 
-	public static void DrawAnimations()
+
+    // draw the animations
+    public static void DrawAnimations()
 	{
 		foreach (Sprite s in _Animations)
 		{

@@ -1,17 +1,10 @@
 ﻿using System;
-
-//========================================================================
-// This conversion was produced by the Free Edition of
-// Instant C# courtesy of Tangible Software Solutions.
-// Order the Premium Edition at https://www.tangiblesoftwaresolutions.com
-//========================================================================
-
 using SwinGameSDK;
 
-/// <summary>
-/// The DeploymentController controls the players actions
-/// during the deployment phase.
-/// </summary>
+//<summary>
+// The DeploymentController controls the players actions
+// during the deployment phase.
+// </summary>
 internal static class DeploymentController
 {
 	private const int SHIPS_TOP = 98;
@@ -38,36 +31,42 @@ internal static class DeploymentController
 	private static Direction _currentDirection = Direction.UpDown;
 	private static ShipName _selectedShip = ShipName.Tug;
 
-	/// <summary>
-	/// Handles user input for the Deployment phase of the game.
-	/// </summary>
-	/// <remarks>
-	/// Involves selecting the ships, deloying ships, changing the direction
-	/// of the ships to add, randomising deployment, end then ending
-	/// deployment
-	/// </remarks>
+	// <summary>
+	// Handles user input for the Deployment phase of the game.
+	// </summary>
+	// <remarks>
+	// Involves selecting the ships, deloying ships, changing the direction
+	// of the ships to add, randomising deployment, end then ending
+	// deployment
+	// </remarks>
 	public static void HandleDeploymentInput()
 	{
-		if (SwinGame.KeyTyped(KeyCode.EscapeKey))
+        // If escape button is pressed, new GameState added.
+        if (SwinGame.KeyTyped(KeyCode.EscapeKey))
 		{
 			GameController.AddNewState(GameState.ViewingGameMenu);
 		}
 
-		if ((SwinGame.KeyTyped(KeyCode.UpKey) | SwinGame.KeyTyped(KeyCode.DownKey)) == true)
+        // If up or down button is pressed, currentDirection is changed to up or down
+        if ((SwinGame.KeyTyped(KeyCode.UpKey) | SwinGame.KeyTyped(KeyCode.DownKey)) == true)
 		{
 			_currentDirection = Direction.UpDown;
 		}
-		if ((SwinGame.KeyTyped(KeyCode.LeftKey) | SwinGame.KeyTyped(KeyCode.RightKey)) == true)
+
+        // If left or right arrow button is pressed, currentDirection is changed to left or right
+        if ((SwinGame.KeyTyped(KeyCode.LeftKey) | SwinGame.KeyTyped(KeyCode.RightKey)) == true)
 		{
 			_currentDirection = Direction.LeftRight;
 		}
 
-		if (SwinGame.KeyTyped(KeyCode.RKey))
+        // If r button is pressed, deployment of ships is randomised
+        if (SwinGame.KeyTyped(KeyCode.RKey))
 		{
 			GameController.HumanPlayer.RandomizeDeployment();
 		}
 
-		if (SwinGame.MouseClicked(MouseButton.LeftButton))
+        // If left mouse button is clicked, ship is selected
+        if (SwinGame.MouseClicked(MouseButton.LeftButton))
 		{
 			ShipName selected = GetShipMouseIsOver();
 			if (selected != ShipName.None)
@@ -79,7 +78,12 @@ internal static class DeploymentController
 				DoDeployClick();
 			}
 
-			if ((GameController.HumanPlayer.ReadyToDeploy & UtilityFunctions.IsMouseInRectangle(PLAY_BUTTON_LEFT, TOP_BUTTONS_TOP, PLAY_BUTTON_WIDTH, TOP_BUTTONS_HEIGHT)) == true)
+            // If player is ready to deploy, and the mouse is within the rectangle of the play button, deployment is finished
+            // else if the the mouse is within the rectangle of the up/down button, the direction is changed
+            // else if the mouse is within the rectangle of the left/right button, the direction is changed
+            // else if the mouse is within the rectangle of the random button, the deployment of ships is randomised
+
+            if ((GameController.HumanPlayer.ReadyToDeploy & UtilityFunctions.IsMouseInRectangle(PLAY_BUTTON_LEFT, TOP_BUTTONS_TOP, PLAY_BUTTON_WIDTH, TOP_BUTTONS_HEIGHT)) == true)
 			{
 				GameController.EndDeployment();
 			}
@@ -98,26 +102,28 @@ internal static class DeploymentController
 		}
 	}
 
-	/// <summary>
-	/// The user has clicked somewhere on the screen, check if its is a deployment and deploy
-	/// the current ship if that is the case.
-	/// </summary>
-	/// <remarks>
-	/// If the click is in the grid it deploys to the selected location
-	/// with the indicated direction
-	/// </remarks>
+	// <summary>
+	// The user has clicked somewhere on the screen, check if its is a deployment and deploy
+	// the current ship if that is the case.
+	// </summary>
+	// <remarks>
+	// If the click is in the grid it deploys to the selected location
+	// with the indicated direction
+	// </remarks>
 	private static void DoDeployClick()
 	{
 		Point2D mouse = SwinGame.MousePosition();
 
 
-		//Calculate the row/col clicked
+		// Calculate the row/col clicked
 		int row = 0;
 		int col = 0;
-		row = Convert.ToInt32(Math.Floor((mouse.Y) / (UtilityFunctions.CELL_HEIGHT + UtilityFunctions.CELL_GAP)));
+        
+		row = Convert.ToInt32(Math.Floor((mouse.Y - UtilityFunctions.FIELD_TOP) / (UtilityFunctions.CELL_HEIGHT + UtilityFunctions.CELL_GAP)));
 		col = Convert.ToInt32(Math.Floor((mouse.X - UtilityFunctions.FIELD_LEFT) / (UtilityFunctions.CELL_WIDTH + UtilityFunctions.CELL_GAP)));
 
-		if (row >= 0 && row < GameController.HumanPlayer.PlayerGrid.Height)
+
+        if (row >= 0 && row < GameController.HumanPlayer.PlayerGrid.Height)
 		{
 			if (col >= 0 && col < GameController.HumanPlayer.PlayerGrid.Width)
 			{
@@ -135,15 +141,15 @@ internal static class DeploymentController
 		}
 	}
 
-	/// <summary>
-	/// Draws the deployment screen showing the field and the ships
-	/// that the player can deploy.
-	/// </summary>
+	// <summary>
+	// Draws the deployment screen showing the field and the ships
+	// that the player can deploy.
+	// </summary>
 	public static void DrawDeployment()
 	{
 		UtilityFunctions.DrawField(GameController.HumanPlayer.PlayerGrid, GameController.HumanPlayer, true);
 
-		//Draw the Left/Right and Up/Down buttons
+		// Draw the Left/Right and Up/Down buttons
 		if (_currentDirection == Direction.LeftRight)
 		{
 			SwinGame.DrawBitmap(GameResources.GameImage("LeftRightButton"), LEFT_RIGHT_BUTTON_LEFT, TOP_BUTTONS_TOP);
@@ -157,7 +163,7 @@ internal static class DeploymentController
 			//SwinGame.DrawText("L/R", Color.Gray, GameFont("Menu"), LEFT_RIGHT_BUTTON_LEFT, TOP_BUTTONS_TOP)
 		}
 
-		//DrawShips
+		// Draw Ships
 		foreach (ShipName sn in Enum.GetValues(typeof(ShipName)))
 		{
 			int i = Convert.ToInt32(Math.Floor(Convert.ToDouble(sn)) - 1);
@@ -189,10 +195,10 @@ internal static class DeploymentController
 		UtilityFunctions.DrawMessage();
 	}
 
-	/// <summary>
-	/// Gets the ship that the mouse is currently over in the selection panel.
-	/// </summary>
-	/// <returns>The ship selected or none</returns>
+	// <summary>
+	// Gets the ship that the mouse is currently over in the selection panel.
+	// </summary>
+	// <returns>The ship selected or none</returns>
 	private static ShipName GetShipMouseIsOver()
 	{
 		foreach (ShipName sn in Enum.GetValues(typeof(ShipName)))

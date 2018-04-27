@@ -1,13 +1,7 @@
 ﻿using System;
-
-//========================================================================
-// This conversion was produced by the Free Edition of
-// Instant C# courtesy of Tangible Software Solutions.
-// Order the Premium Edition at https://www.tangiblesoftwaresolutions.com
-//========================================================================
-
 using SwinGameSDK;
 using System.Collections.Generic;
+
 
 public static class GameResources
 {
@@ -22,19 +16,19 @@ public static class GameResources
 
 	private static void LoadImages()
 	{
-		//Backgrounds
+		// Backgrounds
 		NewImage("Menu", "main_page.jpg");
 		NewImage("Discovery", "discover.jpg");
 		NewImage("Deploy", "deploy.jpg");
 
-		//Deployment
+		// Deployment
 		NewImage("LeftRightButton", "deploy_dir_button_horiz.png");
 		NewImage("UpDownButton", "deploy_dir_button_vert.png");
 		NewImage("SelectedShip", "deploy_button_hl.png");
 		NewImage("PlayButton", "deploy_play_button.png");
 		NewImage("RandomButton", "deploy_randomize_button.png");
 
-		//Ships
+		// Ships
 		int i = 0;
 for (i = 1; i <= 5; i++)
 {
@@ -42,7 +36,7 @@ for (i = 1; i <= 5; i++)
 			NewImage("ShipUD" + i, "ship_deploy_vert_" + i + ".png");
 		}
 
-		//Explosions
+		// Explosions
 		NewImage("Explosion", "explosion.png");
 		NewImage("Splash", "splash.png");
 
@@ -64,44 +58,44 @@ for (i = 1; i <= 5; i++)
 		NewMusic("Background", "horrordrone.mp3");
 	}
 
-	/// <summary>
-	/// Gets a Font Loaded in the Resources
-	/// </summary>
-	/// <param name="font">Name of Font</param>
-	/// <returns>The Font Loaded with this Name</returns>
+	// <summary>
+	// Gets a Font Loaded in the Resources
+	// </summary>
+	// <param name="font">Name of Font</param>
+	// <returns>The Font Loaded with this Name</returns>
 
 	public static Font GameFont(string font)
 	{
 		return _Fonts[font];
 	}
 
-	/// <summary>
-	/// Gets an Image loaded in the Resources
-	/// </summary>
-	/// <param name="image">Name of image</param>
-	/// <returns>The image loaded with this name</returns>
+	// <summary>
+	// Gets an Image loaded in the Resources
+	// </summary>
+	// <param name="image">Name of image</param>
+	// <returns>The image loaded with this name</returns>
 
 	public static Bitmap GameImage(string image)
 	{
 		return _Images[image];
 	}
 
-	/// <summary>
-	/// Gets an sound loaded in the Resources
-	/// </summary>
-	/// <param name="sound">Name of sound</param>
-	/// <returns>The sound with this name</returns>
+	// <summary>
+	// Gets an sound loaded in the Resources
+	// </summary>
+	// <param name="sound">Name of sound</param>
+	// <returns>The sound with this name</returns>
 
 	public static SoundEffect GameSound(string sound)
 	{
 		return _Sounds[sound];
 	}
 
-	/// <summary>
-	/// Gets the music loaded in the Resources
-	/// </summary>
-	/// <param name="music">Name of music</param>
-	/// <returns>The music with this name</returns>
+	// <summary>
+	// Gets the music loaded in the Resources
+	// </summary>
+	// <param name="music">Name of music</param>
+	// <returns>The music with this name</returns>
 
 	public static Music GameMusic(string music)
 	{
@@ -120,10 +114,10 @@ for (i = 1; i <= 5; i++)
 	private static Font _LoadingFont;
 	private static SoundEffect _StartSound;
 
-	/// <summary>
-	/// The Resources Class stores all of the Games Media Resources, such as Images, Fonts
-	/// Sounds, Music.
-	/// </summary>
+	// <summary>
+	// The Resources Class stores all of the Games Media Resources, such as Images, Fonts
+	// Sounds, Music.
+	// </summary>
 
 	public static void LoadResources()
 	{
@@ -196,7 +190,11 @@ for (i = 1; i <= 5; i++)
 
 	}
 
-	private static void ShowMessage(string message, int number)
+    // <summary>
+    // Function used to write a given message.
+    // </summary>
+    // <param name="message">The message it should write</param>
+    private static void ShowMessage(string message, int number)
 	{
 		const int TX = 310;
 		const int TY = 493;
@@ -296,7 +294,7 @@ for (i = 1; i <= 5; i++)
 //		SoundEffect obj = null;
 		foreach (SoundEffect obj in _Sounds.Values)
 		{
-			////Audio.FreeSoundEffect(obj);
+            //Audio.FreeSoundEffect(obj);
 		}
 	}
 

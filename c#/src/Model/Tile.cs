@@ -1,15 +1,9 @@
 ﻿using System;
 
-//========================================================================
-// This conversion was produced by the Free Edition of
-// Instant C# courtesy of Tangible Software Solutions.
-// Order the Premium Edition at https://www.tangiblesoftwaresolutions.com
-//========================================================================
-
-/// <summary>
-/// Tile knows its location on the grid, if it is a ship and if it has been 
-/// shot before
-/// </summary>
+//<summary>
+// Tile knows its location on the grid, if it is a ship and if it has been 
+// shot before
+// </summary>
 public class Tile
 {
 	private readonly int _RowValue; //the row value of the tile
@@ -17,11 +11,11 @@ public class Tile
 	private Ship _Ship = null; //the ship the tile belongs to
 	private bool _Shot = false; //the tile has been shot at
 
-	/// <summary>
-	/// Has the tile been shot?
-	/// </summary>
-	/// <value>indicate if the tile has been shot</value>
-	/// <returns>true if the tile was shot</returns>
+	// <summary>
+	// Has the tile been shot?
+	// </summary>
+	// <value>indicate if the tile has been shot</value>
+	// <returns>true if the tile was shot</returns>
 	public bool Shot
 	{
 		get
@@ -34,11 +28,11 @@ public class Tile
 		}
 	}
 
-	/// <summary>
-	/// The row of the tile in the grid
-	/// </summary>
-	/// <value>the row index of the tile in the grid</value>
-	/// <returns>the row index of the tile</returns>
+	// <summary>
+	// The row of the tile in the grid
+	// </summary>
+	// <value>the row index of the tile in the grid</value>
+	// <returns>the row index of the tile</returns>
 	public int Row
 	{
 		get
@@ -47,11 +41,11 @@ public class Tile
 		}
 	}
 
-	/// <summary>
-	/// The column of the tile in the grid
-	/// </summary>
-	/// <value>the column of the tile in the grid</value>
-	/// <returns>the column of the tile in the grid</returns>
+	// <summary>
+	// The column of the tile in the grid
+	// </summary>
+	// <value>the column of the tile in the grid</value>
+	// <returns>the column of the tile in the grid</returns>
 	public int Column
 	{
 		get
@@ -60,9 +54,9 @@ public class Tile
 		}
 	}
 
-	/// <summary>
-	/// Ship allows for a tile to check if there is ship and add a ship to a tile
-	/// </summary>
+	// <summary>
+	// Ship allows for a tile to check if there is ship and add a ship to a tile
+	// </summary>
 	public Ship Ship
 	{
 		get
@@ -86,12 +80,12 @@ public class Tile
 		}
 	}
 
-	/// <summary>
-	/// The tile constructor will know where it is on the grid, and is its a ship
-	/// </summary>
-	/// <param name="row">the row on the grid</param>
-	/// <param name="col">the col on the grid</param>
-	/// <param name="ship">what ship it is</param>
+	// <summary>
+	// The tile constructor will know where it is on the grid, and is its a ship
+	// </summary>
+	// <param name="row">the row on the grid</param>
+	// <param name="col">the col on the grid</param>
+	// <param name="ship">what ship it is</param>
 	public Tile(int row, int col, Ship ship)
 	{
 		_RowValue = row;
@@ -99,25 +93,25 @@ public class Tile
 		_Ship = ship;
 	}
 
-	/// <summary>
-	/// Clearship will remove the ship from the tile
-	/// </summary>
+	// <summary>
+	// Clearship will remove the ship from the tile
+	// </summary>
 	public void ClearShip()
 	{
 		_Ship = null;
 	}
 
-	/// <summary>
-	/// View is able to tell the grid what the tile is
-	/// </summary>
+	// <summary>
+	// View is able to tell the grid what the tile is
+	// </summary>
 	public TileView View
 	{
 		get
 		{
-			//if there is no ship in the tile
+			// If there is no ship in the tile
 			if (_Ship == null)
 			{
-				//and the tile has been hit
+				// And the tile has been hit
 				if (_Shot)
 				{
 
@@ -125,30 +119,30 @@ public class Tile
 				}
 				else
 				{
-					//and the tile hasn't been hit
+					// And the tile hasn't been hit
 					return TileView.Sea;
 				}
 			}
 			else
 			{
-				//if there is a ship and it has been hit
+				// If there is a ship and it has been hit
 				if (_Shot)
 				{
 					return TileView.Hit;
 				}
 				else
 				{
-					//if there is a ship and it hasn't been hit
+					// If there is a ship and it hasn't been hit
 					return TileView.Ship;
 				}
 			}
 		}
 	}
 
-	/// <summary>
-	/// Shoot allows a tile to be shot at, and if the tile has been hit before
-	/// it will give an error
-	/// </summary>
+	// <summary>
+	// Shoot allows a tile to be shot at, and if the tile has been hit before
+	// it will give an error
+	// </summary>
 	internal void Shoot()
 	{
 		if (false == Shot)

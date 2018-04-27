@@ -1,20 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 
-//========================================================================
-// This conversion was produced by the Free Edition of
-// Instant C# courtesy of Tangible Software Solutions.
-// Order the Premium Edition at https://www.tangiblesoftwaresolutions.com
-//========================================================================
-
-/// <summary>
-/// The SeaGrid is the grid upon which the ships are deployed.
-/// </summary>
-/// <remarks>
-/// The grid is viewable via the ISeaGrid interface as a read only
-/// grid. This can be used in conjuncture with the SeaGridAdapter to 
-/// mask the position of the ships.
-/// </remarks>
+//<summary>
+// The SeaGrid is the grid upon which the ships are deployed.
+// </summary>
+// <remarks>
+// The grid is viewable via the ISeaGrid interface as a read only
+// grid. This can be used in conjuncture with the SeaGridAdapter to 
+// mask the position of the ships.
+// </remarks>
 public class SeaGrid : ISeaGrid
 {
 	private const int _WIDTH = 10;
@@ -24,16 +18,16 @@ public class SeaGrid : ISeaGrid
 	private Dictionary<ShipName, Ship> _Ships;
 	private int _ShipsKilled = 0;
 
-	/// <summary>
-	/// The sea grid has changed and should be redrawn.
-	/// </summary>
+	// <summary>
+	// The sea grid has changed and should be redrawn.
+	// </summary>
 	public event EventHandler Changed;
 
-	/// <summary>
-	/// The width of the sea grid.
-	/// </summary>
-	/// <value>The width of the sea grid.</value>
-	/// <returns>The width of the sea grid.</returns>
+	// <summary>
+	// The width of the sea grid.
+	// </summary>
+	// <value>The width of the sea grid.</value>
+	// <returns>The width of the sea grid.</returns>
 	public int Width
 	{
 		get
@@ -42,11 +36,11 @@ public class SeaGrid : ISeaGrid
 		}
 	}
 
-	/// <summary>
-	/// The height of the sea grid
-	/// </summary>
-	/// <value>The height of the sea grid</value>
-	/// <returns>The height of the sea grid</returns>
+	// <summary>
+	// The height of the sea grid
+	// </summary>
+	// <value>The height of the sea grid</value>
+	// <returns>The height of the sea grid</returns>
 	public int Height
 	{
 		get
@@ -55,9 +49,9 @@ public class SeaGrid : ISeaGrid
 		}
 	}
 
-	/// <summary>
-	/// ShipsKilled returns the number of ships killed
-	/// </summary>
+	// <summary>
+	// ShipsKilled returns the number of ships killed
+	// </summary>
 	public int ShipsKilled
 	{
 		get
@@ -66,12 +60,12 @@ public class SeaGrid : ISeaGrid
 		}
 	}
 
-	/// <summary>
-	/// Show the tile view
-	/// </summary>
-	/// <param name="x">x coordinate of the tile</param>
-	/// <param name="y">y coordiante of the tile</param>
-	/// <returns></returns>
+	// <summary>
+	// Show the tile view
+	// </summary>
+	// <param name="x">x coordinate of the tile</param>
+	// <param name="y">y coordiante of the tile</param>
+	// <returns></returns>
 //INSTANT C# NOTE: C# does not support parameterized properties - the following property has been rewritten as a function:
 //ORIGINAL LINE: Public ReadOnly Property Item(ByVal x As Integer, ByVal y As Integer) As TileView Implements ISeaGrid.Item
 	public TileView get_Item(int x, int y)
@@ -79,9 +73,9 @@ public class SeaGrid : ISeaGrid
 		return _GameTiles[x, y].View;
 	}
 
-	/// <summary>
-	/// AllDeployed checks if all the ships are deployed
-	/// </summary>
+	// <summary>
+	// AllDeployed checks if all the ships are deployed
+	// </summary>
 	public bool AllDeployed
 	{
 		get
@@ -98,12 +92,12 @@ public class SeaGrid : ISeaGrid
 		}
 	}
 
-	/// <summary>
-	/// SeaGrid constructor, a seagrid has a number of tiles stored in an array
-	/// </summary>
+	// <summary>
+	// SeaGrid constructor, a seagrid has a number of tiles stored in an array
+	// </summary>
 	public SeaGrid(Dictionary<ShipName, Ship> ships)
 	{
-		//fill array with empty Tiles
+		// Fill array with empty Tiles
 		_GameTiles = new Tile[Width, Height];
 
 		int i = 0;
@@ -118,13 +112,13 @@ public class SeaGrid : ISeaGrid
 		_Ships = ships;
 	}
 
-	/// <summary>
-	/// MoveShips allows for ships to be placed on the seagrid
-	/// </summary>
-	/// <param name="row">the row selected</param>
-	/// <param name="col">the column selected</param>
-	/// <param name="ship">the ship selected</param>
-	/// <param name="direction">the direction the ship is going</param>
+	// <summary>
+	// MoveShips allows for ships to be placed on the seagrid
+	// </summary>
+	// <param name="row">the row selected</param>
+	// <param name="col">the column selected</param>
+	// <param name="ship">the ship selected</param>
+	// <param name="direction">the direction the ship is going</param>
 	public void MoveShip(int row, int col, ShipName ship, Direction direction)
 	{
 		Ship newShip = _Ships[ship];
@@ -132,13 +126,13 @@ public class SeaGrid : ISeaGrid
 		AddShip(row, col, direction, newShip);
 	}
 
-	/// <summary>
-	/// AddShip add a ship to the SeaGrid
-	/// </summary>
-	/// <param name="row">row coordinate</param>
-	/// <param name="col">col coordinate</param>
-	/// <param name="direction">direction of ship</param>
-	/// <param name="newShip">the ship</param>
+	// <summary>
+	// AddShip add a ship to the SeaGrid
+	// </summary>
+	// <param name="row">row coordinate</param>
+	// <param name="col">col coordinate</param>
+	// <param name="direction">direction of ship</param>
+	// <param name="newShip">the ship</param>
 	private void AddShip(int row, int col, Direction direction, Ship newShip)
 	{
 		try
@@ -160,10 +154,10 @@ public class SeaGrid : ISeaGrid
 				dCol = 0;
 			}
 
-			//place ship's tiles in array and into ship object
+			// Place ship's tiles in array and into ship object
 			int i = 0;
-for (i = 0; i < size; i++)
-{
+            for (i = 0; i < size; i++)
+            {
 				if (currentRow < 0 || currentRow >= Width || currentCol < 0 || currentCol >= Height)
 				{
 					throw new InvalidOperationException("Ship can't fit on the board");
@@ -179,7 +173,7 @@ for (i = 0; i < size; i++)
 		}
 		catch (Exception e)
 		{
-			newShip.Remove(); //if fails remove the ship
+			newShip.Remove(); // If fails remove the ship
 			throw new ApplicationException(e.Message);
 
 		}
@@ -190,18 +184,18 @@ for (i = 0; i < size; i++)
 		}
 	}
 
-	/// <summary>
-	/// HitTile hits a tile at a row/col, and whatever tile has been hit, a
-	/// result will be displayed.
-	/// </summary>
-	/// <param name="row">the row at which is being shot</param>
-	/// <param name="col">the cloumn at which is being shot</param>
-	/// <returns>An attackresult (hit, miss, sunk, shotalready)</returns>
+	// <summary>
+	// HitTile hits a tile at a row/col, and whatever tile has been hit, a
+	// result will be displayed.
+	// </summary>
+	// <param name="row">the row at which is being shot</param>
+	// <param name="col">the cloumn at which is being shot</param>
+	// <returns>An attackresult (hit, miss, sunk, shotalready)</returns>
 	public AttackResult HitTile(int row, int col)
 	{
 		try
 		{
-			//tile is already hit
+			// Tile is already hit
 			if (_GameTiles[row, col].Shot)
 			{
 				return new AttackResult(ResultOfAttack.ShotAlready, "have already attacked [" + col + "," + row + "]!", row, col);
@@ -209,13 +203,13 @@ for (i = 0; i < size; i++)
 
 			_GameTiles[row, col].Shoot();
 
-			//there is no ship on the tile
+			// There is no ship on the tile
 			if (_GameTiles[row, col].Ship == null)
 			{
 				return new AttackResult(ResultOfAttack.Miss, "missed", row, col);
 			}
 
-			//all ship's tiles have been destroyed
+			// All ship's tiles have been destroyed
 			if (_GameTiles[row, col].Ship.IsDestroyed)
 			{
 				_GameTiles[row, col].Shot = true;
@@ -223,7 +217,7 @@ for (i = 0; i < size; i++)
 				return new AttackResult(ResultOfAttack.Destroyed, _GameTiles[row, col].Ship, "destroyed the enemy's", row, col);
 			}
 
-			//else hit but not destroyed
+			// Else hit but not destroyed
 			return new AttackResult(ResultOfAttack.Hit, "hit something!", row, col);
 		}
 		finally
