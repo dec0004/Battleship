@@ -252,18 +252,20 @@ public class Player : IEnumerable<Ship>
 	// <returns>the result of the attack</returns>
 	internal AttackResult Shoot(int row, int col)
 	{
-		_shots += 1;
+        
 		AttackResult result = EnemyGrid.HitTile(row, col);
 
-		switch (result.Value)
+        switch (result.Value)
 		{
 			case ResultOfAttack.Destroyed:
 			case ResultOfAttack.Hit:
-				_hits += 1;
+                _shots += 1;
+                _hits += 1;
 				break;
 			case ResultOfAttack.Miss:
 				_misses += 1;
-				break;
+                _shots += 1;
+                break;
 		}
 
 		return result;
