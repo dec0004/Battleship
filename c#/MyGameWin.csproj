@@ -46,6 +46,7 @@
     <Compile Include="src\GameState.cs" />
     <Compile Include="src\HighScoreController.cs" />
     <Compile Include="src\MenuController.cs" />
+    <Compile Include="src\Model\AiEasyPlayer.cs" />
     <Compile Include="src\Model\AIHardPlayer.cs" />
     <Compile Include="src\Model\AIMediumPlayer.cs" />
     <Compile Include="src\Model\AIOption.cs" />

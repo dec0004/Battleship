@@ -1,22 +1,32 @@
 ﻿using System;
+
+//========================================================================
+// This conversion was produced by the Free Edition of
+// Instant C# courtesy of Tangible Software Solutions.
+// Order the Premium Edition at https://www.tangiblesoftwaresolutions.com
+//========================================================================
+
 using SwinGameSDK;
 
-// <summary>
-// The battle phase is handled by the DiscoveryController.
-// </summary>
+/// <summary>
+/// The battle phase is handled by the DiscoveryController.
+/// </summary>
 internal static class DiscoveryController
 {
-
-	// <summary>
-	// Handles input during the discovery phase of the game.
-	// </summary>
-	// <remarks>
-	// Escape opens the game menu. Clicking the mouse will
-	// attack a location.
-	// </remarks>
+	private const int ESC_BUTTON = 693;
+	private const int ESC_BUTTON_WIDTH = 80;
+	/// <summary>
+	/// Handles input during the discovery phase of the game.
+	/// </summary>
+	/// <remarks>
+	/// Escape opens the game menu. Clicking the mouse will
+	/// attack a location.
+	/// </remarks>
 	public static void HandleDiscoveryInput()
 	{
-		if (SwinGame.KeyTyped(KeyCode.EscapeKey))
+		Point2D mousePos = SwinGame.MousePosition();
+	
+		if (SwinGame.KeyTyped(KeyCode.EscapeKey) || (SwinGame.PointInRect(mousePos, 693, 80, 80, 40) && (SwinGame.MouseClicked(MouseButton.LeftButton))))
 		{
 			GameController.AddNewState(GameState.ViewingGameMenu);
 		}
@@ -27,15 +37,15 @@ internal static class DiscoveryController
 		}
 	}
 
-	// <summary>
-	// Attack the location that the mouse is over.
-	// </summary>
+	/// <summary>
+	/// Attack the location that the mouse if over.
+	/// </summary>
 	private static void DoAttack()
 	{
 		Point2D mouse = SwinGame.MousePosition();
 
 
-		// Calculate the row/col clicked
+		//Calculate the row/col clicked
 		int row = 0;
 		int col = 0;
 		row = Convert.ToInt32(Math.Floor((mouse.Y - UtilityFunctions.FIELD_TOP) / (UtilityFunctions.CELL_HEIGHT + UtilityFunctions.CELL_GAP)));
@@ -50,15 +60,17 @@ internal static class DiscoveryController
 		}
 	}
 
-	// <summary>
-	// Draws the game during the attack phase.
-	// </summary>s
+	/// <summary>
+	/// Draws the game during the attack phase.
+	/// </summary>s
 	public static void DrawDiscovery()
 	{
 		const int SCORES_LEFT = 172;
 		const int SHOTS_TOP = 157;
 		const int HITS_TOP = 206;
 		const int SPLASH_TOP = 256;
+
+		SwinGame.DrawBitmap(GameResources.GameImage("Escape_Button"), ESC_BUTTON, ESC_BUTTON_WIDTH);
 
 		if (((SwinGame.KeyDown(KeyCode.LeftShiftKey) | SwinGame.KeyDown(KeyCode.RightShiftKey)) & SwinGame.KeyDown(KeyCode.CKey)) != true)
 		{
