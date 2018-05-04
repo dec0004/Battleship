@@ -1,12 +1,13 @@
 ﻿using System;
 using SwinGameSDK;
-
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
 // <summary>
 // The battle phase is handled by the DiscoveryController.
 // </summary>
 internal static class DiscoveryController
 {
-
 	// <summary>
 	// Handles input during the discovery phase of the game.
 	// </summary>
@@ -16,6 +17,10 @@ internal static class DiscoveryController
 	// </remarks>
 	public static void HandleDiscoveryInput()
 	{
+
+		//SwinGame.SetMusicVolume();
+		
+
 		if (SwinGame.KeyTyped(KeyCode.EscapeKey))
 		{
 			GameController.AddNewState(GameState.ViewingGameMenu);
@@ -72,9 +77,40 @@ internal static class DiscoveryController
 		UtilityFunctions.DrawSmallField(GameController.HumanPlayer.PlayerGrid, GameController.HumanPlayer);
 		UtilityFunctions.DrawMessage();
 
+
+		System.IO.TextReader input = new StreamReader("Volume.txt");
+
+		double _vol = double.Parse(input.ReadLine());
+		float newVol = (float)_vol;
+		input.Close();
 		SwinGame.DrawText(GameController.HumanPlayer.Shots.ToString(), Color.White, GameResources.GameFont("Menu"), SCORES_LEFT, SHOTS_TOP);
 		SwinGame.DrawText(GameController.HumanPlayer.Hits.ToString(), Color.White, GameResources.GameFont("Menu"), SCORES_LEFT, HITS_TOP);
 		SwinGame.DrawText(GameController.HumanPlayer.Missed.ToString(), Color.White, GameResources.GameFont("Menu"), SCORES_LEFT, SPLASH_TOP);
-	}
+		SwinGame.DrawText("-   Volume   +", Color.White, GameResources.GameFont("Menu"), 440f, 70f);
+		SwinGame.DrawText("Current Volume:" + _vol, Color.White, GameResources.GameFont("Menu"), 580f, 70f);
+		
 
+		if ((SwinGame.MouseClicked(MouseButton.LeftButton) && (UtilityFunctions.IsMouseInRectangle(440, 73, 10, 10)))&& _vol > 0)
+		{
+				_vol = _vol - 0.1;
+				File.WriteAllText("Volume.txt", String.Empty);
+				TextWriter tw = new StreamWriter("Volume.txt", true);
+
+				tw.WriteLine(_vol);
+				tw.Close();
+				SwinGame.SetMusicVolume(newVol);
+		} else if ((SwinGame.MouseClicked(MouseButton.LeftButton) && ((UtilityFunctions.IsMouseInRectangle(515, 73, 10, 10)))) && _vol <1)
+		{
+				_vol = _vol + 0.1;
+				File.WriteAllText("Volume.txt", String.Empty);
+				TextWriter tw = new StreamWriter("Volume.txt", true);
+
+				tw.WriteLine(_vol);
+				tw.Close();
+				SwinGame.SetMusicVolume(newVol);
+		}
+
+
+
+	}
 }

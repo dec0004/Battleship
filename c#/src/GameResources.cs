@@ -56,6 +56,7 @@ for (i = 1; i <= 5; i++)
 	private static void LoadMusic()
 	{
 		NewMusic("Background", "horrordrone.mp3");
+		NewMusic("MenuMusic", "Menu.wav");
 	}
 
 	// <summary>

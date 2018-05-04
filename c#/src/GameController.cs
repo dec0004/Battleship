@@ -15,7 +15,6 @@ public static class GameController
 	private static AIPlayer _ai;
 
 	private static Stack<GameState> _state = new Stack<GameState>();
-
 	private static AIOption _aiSetting;
 
 	// <summary>
@@ -65,6 +64,7 @@ public static class GameController
 
 		// At the start the player is viewing the main menu
 		_state.Push(GameState.ViewingMainMenu);
+
 	}
 
 	// <summary>
@@ -82,7 +82,7 @@ public static class GameController
 
 		//Create the game
 		_theGame = new BattleShipsGame();
-
+		
 		//create the players
 		switch (_aiSetting)
 		{
@@ -231,6 +231,7 @@ public static class GameController
 		_theGame.AddDeployedPlayer(_ai);
 
 		SwitchState(GameState.Discovering);
+		Audio.PlayMusic(GameResources.GameMusic("MenuMusic"));
 	}
 
 	// <summary>
@@ -401,5 +402,6 @@ public static class GameController
 	{
 		_aiSetting = setting;
 	}
+
 
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 using SwinGameSDK;
-
+using System.Diagnostics;
 //<summary>
 // The menu controller handles the drawing and user interactions
 // from the menus in the game. These include the main menu, game
@@ -30,7 +30,7 @@ internal static class MenuController
 	private const int BUTTON_HEIGHT = 15;
 	private const int BUTTON_SEP = BUTTON_WIDTH + MENU_GAP;
 	private const int TEXT_OFFSET = 0;
-
+	
 	private const int MAIN_MENU = 0;
 	private const int GAME_MENU = 1;
 	private const int SETUP_MENU = 2;
@@ -121,7 +121,11 @@ internal static class MenuController
 				// None clicked - so end this sub menu
 				GameController.EndCurrentState();
 			}
+
+			
 		}
+
+		
 
 		return false;
 	}
@@ -201,8 +205,10 @@ internal static class MenuController
 			toDraw.Y = btnTop + TEXT_OFFSET;
 			toDraw.Width = BUTTON_WIDTH;
 			toDraw.Height = BUTTON_HEIGHT;
+			
 			SwinGame.DrawText(_menuStructure[menu][i], MENU_COLOR, Color.Black, GameResources.GameFont("Menu"), FontAlignment.AlignCenter, toDraw);
-
+			
+			Debug.WriteLine("dcsc");
 			if ((SwinGame.MouseDown(MouseButton.LeftButton) & IsMouseOverMenu(i, level, xOffset)) != true)
 			{
 				SwinGame.DrawRectangle(HIGHLIGHT_COLOR, btnLeft, btnTop, BUTTON_WIDTH, BUTTON_HEIGHT);
@@ -253,6 +259,7 @@ internal static class MenuController
 			case GAME_MENU:
 				PerformGameMenuAction(button);
 				break;
+		
 		}
 	}
 

@@ -2,8 +2,10 @@
 using SwinGameSDK;
 internal static class GameLogic
 {
+	private static int volume;
 	public static void Main()
 	{
+		SwinGame.OpenAudio();
 		//Opens a new Graphics Window
 		SwinGame.OpenGraphicsWindow("Battle Ships", 800, 600);
 
