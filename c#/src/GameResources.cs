@@ -57,6 +57,8 @@ for (i = 1; i <= 5; i++)
 	{
 		NewMusic("Background", "horrordrone.mp3");
 		NewMusic("MenuMusic", "Menu.wav");
+		NewMusic("Total_war", "Total_war.wav");
+		NewMusic("Rage", "Rage.wav");
 	}
 
 	// <summary>

@@ -79,7 +79,7 @@ public static class GameController
 		{
 			EndGame();
 		}
-
+		Audio.PlayMusic(GameResources.GameMusic("Total_war"));
 		//Create the game
 		_theGame = new BattleShipsGame();
 		

@@ -185,3 +185,5 @@ C:\Users\Jordan\Documents\Swinburne\DTAP\week5\Battleship\Battleship\c#\bin\Debu
 C:\Users\Jordan\Documents\Swinburne\DTAP\week5\Battleship\Battleship\c#\bin\Debug\SwinGame.dll
 C:\Users\Jordan\Documents\Swinburne\DTAP\week5\Battleship\Battleship\c#\bin\Debug\Resources\sounds\Menu.wav
 C:\Users\Jordan\Documents\Swinburne\DTAP\week5\Battleship\Battleship\c#\bin\Debug\Resources\Volume.txt
+C:\Users\Jordan\Documents\Swinburne\DTAP\week5\Battleship\Battleship\c#\bin\Debug\Resources\sounds\Rage.wav
+C:\Users\Jordan\Documents\Swinburne\DTAP\week5\Battleship\Battleship\c#\bin\Debug\Resources\sounds\Total_war.wav
