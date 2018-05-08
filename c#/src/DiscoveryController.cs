@@ -19,8 +19,6 @@ internal static class DiscoveryController
 	{
 
 		//SwinGame.SetMusicVolume();
-		
-
 		if (SwinGame.KeyTyped(KeyCode.EscapeKey))
 		{
 			GameController.AddNewState(GameState.ViewingGameMenu);
@@ -64,8 +62,14 @@ internal static class DiscoveryController
 		const int SHOTS_TOP = 157;
 		const int HITS_TOP = 206;
 		const int SPLASH_TOP = 256;
+		SwinGame.DrawBitmap(GameResources.GameImage("BackButton"), 200,80);
 
-		if (((SwinGame.KeyDown(KeyCode.LeftShiftKey) | SwinGame.KeyDown(KeyCode.RightShiftKey)) & SwinGame.KeyDown(KeyCode.CKey)) != true)
+		if ((SwinGame.MouseClicked(MouseButton.LeftButton) && (UtilityFunctions.IsMouseInRectangle(200, 80, 50, 30))))
+		{
+			GameController.AddNewState(GameState.ViewingGameMenu);
+		}
+
+			if (((SwinGame.KeyDown(KeyCode.LeftShiftKey) | SwinGame.KeyDown(KeyCode.RightShiftKey)) & SwinGame.KeyDown(KeyCode.CKey)) != true)
 		{
 			UtilityFunctions.DrawField(GameController.HumanPlayer.EnemyGrid, GameController.ComputerPlayer, false);
 		}
