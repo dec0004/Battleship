@@ -111,7 +111,7 @@ internal static class UtilityFunctions
 	// <param name="cellWidth">the width of each cell</param>
 	// <param name="cellHeight">the height of each cell</param>
 	// <param name="cellGap">the gap between the cells</param>
-	private static void DrawCustomField(ISeaGrid grid, Player thePlayer, bool small, bool showShips, int left, int top, int width, int height, int cellWidth, int cellHeight, int cellGap)
+	private static void DrawCustomField(ISeaGrid grid, Player thePlayer, bool small, bool showShips , int left, int top, int width, int height, int cellWidth, int cellHeight, int cellGap)
 	{
 		//SwinGame.FillRectangle(Color.Blue, left, top, width, height)
 
@@ -154,27 +154,29 @@ internal static class UtilityFunctions
 		// Draw the ships
 		foreach (Ship s in thePlayer)
 		{
-			if (s == null || !s.IsDeployed)
+            
+            if (s == null || !s.IsDeployed)
 			{
 				continue;
 			}
-			rowTop = top + (cellGap + cellHeight) * s.Row + SHIP_GAP;
-			colLeft = left + (cellGap + cellWidth) * s.Column + SHIP_GAP;
 
-			if (s.Direction == Direction.LeftRight)
-			{
-				shipName = "ShipLR" + s.Size;
-				shipHeight = cellHeight - (SHIP_GAP * 2);
-				shipWidth = (cellWidth + cellGap) * s.Size - (SHIP_GAP * 2) - cellGap;
-			}
-			else
-			{
-				//Up down
-				shipName = "ShipUD" + s.Size;
-				shipHeight = (cellHeight + cellGap) * s.Size - (SHIP_GAP * 2) - cellGap;
-				shipWidth = cellWidth - (SHIP_GAP * 2);
-			}
+            rowTop = top + (cellGap + cellHeight) * s.Row + SHIP_GAP;
+            colLeft = left + (cellGap + cellWidth) * s.Column + SHIP_GAP;
 
+            if (s.Direction == Direction.LeftRight)
+            {
+                shipName = "ShipLR" + s.Size;
+                shipHeight = cellHeight - (SHIP_GAP * 2);
+                shipWidth = (cellWidth + cellGap) * s.Size - (SHIP_GAP * 2) - cellGap;
+            }
+            else
+            {
+                //Up down
+                shipName = "ShipUD" + s.Size;
+                shipHeight = (cellHeight + cellGap) * s.Size - (SHIP_GAP * 2) - cellGap;
+                shipWidth = cellWidth - (SHIP_GAP * 2);
+            }
+            
             //if the grid is not small...
             //else draw the ships
 
@@ -354,9 +356,9 @@ internal static class UtilityFunctions
 	{
 		int i = 0;
 //INSTANT C# NOTE: The ending condition of VB 'For' loops is tested only on entry to the loop. Instant C# has created a temporary variable in order to use the initial value of ANIMATION_CELLS * FRAMES_PER_CELL for every iteration:
-int tempVar = ANIMATION_CELLS * FRAMES_PER_CELL;
-for (i = 1; i <= tempVar; i++)
-{
+        int tempVar = ANIMATION_CELLS * FRAMES_PER_CELL;
+        for (i = 1; i <= tempVar; i++)
+        {
 			UpdateAnimations();
 			GameController.DrawScreen();
 		}

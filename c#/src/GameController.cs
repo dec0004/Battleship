@@ -99,8 +99,8 @@ public static class GameController
                 HighScoreController.AI_Difficulty_str = "hard";
                 break;
 			default:
-				_ai = new AIHardPlayer(_theGame);
-                HighScoreController.AI_Difficulty_str = "hard";
+				_ai = new AIMediumPlayer(_theGame);
+                HighScoreController.AI_Difficulty_str = "medium";
                 break;
 		}
 
@@ -185,7 +185,7 @@ public static class GameController
 		{
 			case ResultOfAttack.Destroyed:
 				PlayHitSequence(result.Row, result.Column, isHuman);
-				Audio.PlaySoundEffect(GameResources.GameSound("Sink"));
+                Audio.PlaySoundEffect(GameResources.GameSound("Sink"));
 
 				break;
 			case ResultOfAttack.GameOver:

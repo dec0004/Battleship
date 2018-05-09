@@ -212,9 +212,10 @@ public class SeaGrid : ISeaGrid
 			// All ship's tiles have been destroyed
 			if (_GameTiles[row, col].Ship.IsDestroyed)
 			{
-				_GameTiles[row, col].Shot = true;
+                _GameTiles[row, col].Shot = true;
 				_ShipsKilled += 1;
-				return new AttackResult(ResultOfAttack.Destroyed, _GameTiles[row, col].Ship, "destroyed the enemy's", row, col);
+
+                return new AttackResult(ResultOfAttack.Destroyed, _GameTiles[row, col].Ship, "destroyed the enemy's", row, col);
 			}
 
 			// Else hit but not destroyed
