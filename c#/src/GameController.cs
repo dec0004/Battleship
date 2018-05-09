@@ -88,16 +88,20 @@ public static class GameController
 		{
             case AIOption.Easy:
                 _ai = new AIEasyPlayer(_theGame);
+                HighScoreController.AI_Difficulty_str = "easy";
                 break;
 			case AIOption.Medium:
 				_ai = new AIMediumPlayer(_theGame);
-				break;
+                HighScoreController.AI_Difficulty_str = "medium";
+                break;
 			case AIOption.Hard:
 				_ai = new AIHardPlayer(_theGame);
-				break;
+                HighScoreController.AI_Difficulty_str = "hard";
+                break;
 			default:
 				_ai = new AIHardPlayer(_theGame);
-				break;
+                HighScoreController.AI_Difficulty_str = "hard";
+                break;
 		}
 
 		_human = new Player(_theGame);

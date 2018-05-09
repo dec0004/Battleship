@@ -37,7 +37,6 @@
     <PrepareForRunDependsOn>$(PrepareForRunDependsOn);CopyLibsToOut</PrepareForRunDependsOn>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="AiEasyPlayer.cs" />
     <Compile Include="src\DeploymentController.cs" />
     <Compile Include="src\DiscoveryController.cs" />
     <Compile Include="src\EndingGameController.cs" />
@@ -47,6 +46,7 @@
     <Compile Include="src\GameState.cs" />
     <Compile Include="src\HighScoreController.cs" />
     <Compile Include="src\MenuController.cs" />
+    <Compile Include="src\Model\AiEasyPlayer.cs" />
     <Compile Include="src\Model\AIHardPlayer.cs" />
     <Compile Include="src\Model\AIMediumPlayer.cs" />
     <Compile Include="src\Model\AIOption.cs" />
