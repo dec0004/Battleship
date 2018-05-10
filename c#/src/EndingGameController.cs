@@ -21,7 +21,7 @@ internal static class EndingGameController
 		UtilityFunctions.DrawField(GameController.ComputerPlayer.PlayerGrid, GameController.ComputerPlayer, true);
 		UtilityFunctions.DrawSmallField(GameController.HumanPlayer.PlayerGrid, GameController.HumanPlayer);
 
-		 toDraw.X = 0;
+		toDraw.X = 0;
 		toDraw.Y = 250;
 		toDraw.Width = SwinGame.ScreenWidth();
 		toDraw.Height = SwinGame.ScreenHeight();

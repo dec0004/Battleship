@@ -12,7 +12,7 @@ using SwinGameSDK;
 // </remarks>
 internal static class HighScoreController
 {
-	private const int NAME_WIDTH = 3;
+	private const int NAME_WIDTH = 5;
 	private const int SCORES_LEFT = 490;
 
 	// <summary>
@@ -128,8 +128,8 @@ internal static class HighScoreController
 
 		//For all of the scores
 		int i = 0;
-for (i = 0; i < _Scores.Count; i++)
-{
+        for (i = 0; i < _Scores.Count; i++)
+        {
             Score s = _Scores[i];
 
 
@@ -198,9 +198,9 @@ for (i = 0; i < _Scores.Count; i++)
 
 			s.Name = SwinGame.TextReadAsASCII();
 
-			if (s.Name.Length < 3)
+			if (s.Name.Length < 5)
 			{
-				s.Name = s.Name + new string(' ', 3 - s.Name.Length);
+				s.Name = s.Name + new string(' ', 5 - s.Name.Length);
 			}
 
             _Scores.RemoveAt(_Scores.Count - 1);
