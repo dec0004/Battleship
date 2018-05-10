@@ -12,7 +12,7 @@ using SwinGameSDK;
 // </remarks>
 internal static class HighScoreController
 {
-    private const int NAME_WIDTH = 3;
+    private const int NAME_WIDTH = 5; //changed to accept 5 character high scores
     private const int SCORES_LEFT = 490;
 
     private static string _AI_Difficulty_str; // Used to calculate the player's score. Higher difficulty = more points
