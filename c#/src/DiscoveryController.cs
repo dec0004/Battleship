@@ -64,6 +64,12 @@ internal static class DiscoveryController
 		const int SHOTS_TOP = 157;
 		const int HITS_TOP = 206;
 		const int SPLASH_TOP = 256;
+		SwinGame.DrawBitmap(GameResources.GameImage("BackButton"), 200, 80);
+
+		if ((SwinGame.MouseClicked(MouseButton.LeftButton) && (UtilityFunctions.IsMouseInRectangle(200, 80, 50, 30))))
+		{
+			GameController.AddNewState(GameState.ViewingGameMenu);
+		}
 
 		if (((SwinGame.KeyDown(KeyCode.LeftShiftKey) | SwinGame.KeyDown(KeyCode.RightShiftKey)) & SwinGame.KeyDown(KeyCode.CKey)) != true)
 		{
@@ -78,19 +84,19 @@ internal static class DiscoveryController
 		UtilityFunctions.DrawMessage();
 
         // TODO: UNCOMMENT ONCE VOLUME IS FIXED
-        //System.IO.TextReader input = new StreamReader("Volume.txt");
+        System.IO.TextReader input = new StreamReader("Volume.txt");
 
-        //double _vol = double.Parse(input.ReadLine());
-        //float newVol = (float)_vol;
-        //input.Close();
+        double _vol = double.Parse(input.ReadLine());
+       float newVol = (float)_vol;
+        input.Close();
 
         SwinGame.DrawText(GameController.HumanPlayer.Shots.ToString(), Color.White, GameResources.GameFont("Menu"), SCORES_LEFT, SHOTS_TOP);
 		SwinGame.DrawText(GameController.HumanPlayer.Hits.ToString(), Color.White, GameResources.GameFont("Menu"), SCORES_LEFT, HITS_TOP);
 		SwinGame.DrawText(GameController.HumanPlayer.Missed.ToString(), Color.White, GameResources.GameFont("Menu"), SCORES_LEFT, SPLASH_TOP);
 		SwinGame.DrawText("-   Volume   +", Color.White, GameResources.GameFont("Menu"), 440f, 70f);
-		//SwinGame.DrawText("Current Volume:" + _vol, Color.White, GameResources.GameFont("Menu"), 580f, 70f);
+		SwinGame.DrawText("Current Volume:" + _vol, Color.White, GameResources.GameFont("Menu"), 580f, 70f);
 		
-        /*
+        
 		if ((SwinGame.MouseClicked(MouseButton.LeftButton) && (UtilityFunctions.IsMouseInRectangle(440, 73, 10, 10)))&& _vol > 0)
 		{
 				_vol = _vol - 0.1;
@@ -110,7 +116,7 @@ internal static class DiscoveryController
 				tw.Close();
 				SwinGame.SetMusicVolume(newVol);
 		}
-        */
+        
 
 
 	}
