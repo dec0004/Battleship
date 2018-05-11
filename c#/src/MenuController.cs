@@ -25,7 +25,7 @@ internal static class MenuController
 
 	private const int MENU_TOP = 530;
 	private const int MENU_LEFT = 30;
-	private const int MENU_GAP = 0;
+	private const int MENU_GAP = 2;
 	private const int BUTTON_WIDTH = 160;
 	private const int BUTTON_HEIGHT = 30;
 	private const int BUTTON_SEP = BUTTON_WIDTH + MENU_GAP;
