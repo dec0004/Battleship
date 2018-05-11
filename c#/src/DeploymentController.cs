@@ -44,7 +44,7 @@ internal static class DeploymentController
         // If escape button is pressed, new GameState added.
         if (SwinGame.KeyTyped(KeyCode.EscapeKey))
 		{
-			GameController.AddNewState(GameState.ViewingGameMenu);
+			GameController.AddNewState(GameState.ViewingMainMenu);
 		}
 
         // If up or down button is pressed, currentDirection is changed to up or down
