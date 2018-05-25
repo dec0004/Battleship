@@ -373,3 +373,6 @@ C:\Users\Tom\Documents\Uni\SWE20001\Week 09\Battleship\c#\bin\Debug\MyGame.exe
 C:\Users\Tom\Documents\Uni\SWE20001\Week 09\Battleship\c#\bin\Debug\MyGame.pdb
 C:\Users\Tom\Documents\Uni\SWE20001\Week 09\Battleship\c#\bin\Debug\SwinGame.dll
 C:\Users\Tom\Documents\Uni\SWE20001\Week 09\Battleship\c#\obj\x86\Debug-Windows\MyGameWin.csprojResolveAssemblyReference.cache
+C:\Users\Tom\Documents\Uni\SWE20001\Week 02\Battleship\c#\bin\Debug\MyGame.exe.config
+C:\Users\Tom\Documents\Uni\SWE20001\Week 02\Battleship\c#\obj\x86\Debug-Windows\MyGame.exe
+C:\Users\Tom\Documents\Uni\SWE20001\Week 02\Battleship\c#\obj\x86\Debug-Windows\MyGame.pdb
